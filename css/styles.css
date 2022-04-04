@@ -11956,4 +11956,11 @@ fieldset:disabled .btn {
     display: none !important;
   }
 }
+
+body {
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#12FFF7), to(#B3FFAB));
+  background-image: linear-gradient(to top, #12FFF7 0%, #B3FFAB 100%);
+  min-height: 100vh;
+  /*para que no desconfigure el gradient*/
+}
 /*# sourceMappingURL=styles.css.map */
