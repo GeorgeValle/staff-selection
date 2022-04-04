@@ -1,2 +1,3 @@
 # staff-selection
-whit this repositoru,  we can  recruit new staff
+With this repository you can recruit new staff.
+in progress.
