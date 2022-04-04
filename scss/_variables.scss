@@ -1,9 +1,75 @@
 
 
 
-
-$enable-rounded:	true;
+/* Variables globales de Bootstraps */ 
+$enable-rounded: true;
 
 $enable-shadows: true;
 
 $enable-gradients: true;
+
+/*colores principales del proyecto*/
+
+
+$celesty: rgba( 18, 255, 247, 0.25 );
+$celeste:#12FFF7;
+
+$greenty: rgba( 179, 255, 171, 0.25 );
+$verde:#B3FFAB;
+
+
+
+/* tetrade de colores */
+
+$celesground: rgba( 171, 221, 255, 0.25 );
+$celeste-claro: #ABDDFF;
+
+$pinkground: rgba( 247, 171, 255, 0.25 );
+$rosita: #F7ABFF;
+
+$orangeground: rgba( 255, 205, 171, 0.35 );
+$naranja: #FFCDAB;
+
+/* color rgba para los borders*/
+$border: rgba( 255, 255, 255, 0.25 );
+
+
+/* Variables de colores 
+de redes sociales*/
+$face:#3b5998;
+$whats:#25d366;
+$yout:#c4302b;
+$inst:#cd279d;
+$tik: #ff0050;
+
+
+/* efecto vidrio */
+@mixin glass{
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 8px );
+}
+
+
+.glass-celesty-card{ 
+    background: $celesty;
+    @include glass;
+    border-radius: 10px;
+    border: 1px solid $border;
+
+}
+
+.glass-greenty-card{ 
+    background: $greenty;
+    @include glass;
+    border-radius: 10px;
+    border: 1px solid $border;
+}
+
+/* color para utilizar con los hovers*/
+@mixin hover-orange{
+    background-color: $naranja;
+    border: .7px solid #fff;
+    transition: .5;
+}
+
+
