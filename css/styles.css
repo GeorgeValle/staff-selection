@@ -11957,6 +11957,34 @@ fieldset:disabled .btn {
   }
 }
 
+/* Variables globales de Bootstraps */
+/*colores principales del proyecto*/
+/* tetrade de colores */
+/* color rgba para los borders*/
+/* Variables de colores 
+de redes sociales*/
+/* efecto vidrio */
+.glass-celesty-card {
+  background: rgba(18, 255, 247, 0.25);
+  -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.glass-greenty-card {
+  background: rgba(179, 255, 171, 0.25);
+  -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* color para utilizar con los hovers*/
 body {
   background-image: -webkit-gradient(linear, left bottom, left top, from(#12FFF7), to(#B3FFAB));
   background-image: linear-gradient(to top, #12FFF7 0%, #B3FFAB 100%);
