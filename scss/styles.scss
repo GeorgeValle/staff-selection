@@ -1,2 +1,9 @@
 @import "../libs/bootstrap/scss/bootstrap.scss";
 
+@import "_variables";
+body{
+    
+    // color: white; 
+    background-image: linear-gradient(to top, #12FFF7 0%, #B3FFAB 100%);
+    min-height: 100vh; /*para que no desconfigure el gradient*/
+}
