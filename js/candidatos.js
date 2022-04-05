@@ -1,5 +1,5 @@
 // let $ncandidatos=0,
-let $carpeta= Array.of([]),
+let $carpeta= new Array(),
 $confirmacion= true;
 
 class Candidato{
@@ -16,24 +16,7 @@ class Candidato{
         alert(`Datos del Candidato: Nombre: ${this.nombre}, Edad: ${this.edad}, DNI: ${this.DNI}, Dirección: ${this.direccion}, Teléfono; ${this.telefono}, Especialidad: ${this.especialidad}.`);
     }
 
-    static buscarNombre($nombre){
-
-        this.nombre == $nombre 
-        ?this.mostrarPropiedades()
-        : alert("No se encontró el candidato");
-    }
-
-    static buscarEspecialidad($especialidad){
-        this.especialidad == $especialidad 
-        ?this.mostrarPropiedades()
-        : alert("No se encontro candidato con esa especialidad");
-    }
-
-    static buscarDNI($dni){
-        this.DNI == $dni
-        ?this.mostrarPropiedades()
-        : alert("No se encontro DNI");
-    }
+    
 
 }
 
@@ -54,30 +37,11 @@ function agregarCandidato(){
 }
 
 function buscarCandidato(){
+                let $nombre = prompt("Ingrese el nombre del candidato a buscar");
 
-    let eleccion = parseInt(prompt
-                ( `Busqueda por nombre: 1           
-                busqueda por especialidad: 2
-                busqueda por DNi: 3 `));
+                const candidato = $carpeta.find( cand => cand.nombre === $nombre)
 
-    switch(eleccion){
-            case 1:
-                let $nombre = prompt("Ingrese nombre de candidato a buscar")
-                for (const candidato of $carpeta)
-                candidato.buscarNombre($nombre);
-                break;
-            case 2:
-                let $especialidad = prompt("Ingrese la especialidad para encontrar candidatos")
-                for (const candidato of $carpeta)
-                candidato.buscarEspecialidad($especialidad);
-                break;
-                case 3:
-                let $DNI = prompt("Ingrese la especialidad para encontrar candidatos")
-                for (const candidato of $carpeta)
-                candidato.buscarDNI($DNI);
-            default:
-                alert("No es una opcion valida")
-    }
+                candidato.mostrarPropiedades();    
 }
 
 
