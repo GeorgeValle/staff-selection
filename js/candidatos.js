@@ -12,7 +12,7 @@ class Candidato{
         this.especialidad = especialidad;
     }
 
-    mostrarPropiedades = function() {
+    mostrarPropiedades() {
         alert(`Datos del Candidato: Nombre: ${this.nombre}, Edad: ${this.edad}, DNI: ${this.DNI}, Dirección: ${this.direccion}, Teléfono; ${this.telefono}, Especialidad: ${this.especialidad}.`);
     }
 
@@ -23,12 +23,12 @@ class Candidato{
 function agregarCandidato(){
     do{               
         let $nombre= prompt(`Ingrese nombre`).toLowerCase(),
-            $edad= prompt(`Ingrese edad`),
-            $DNI= prompt(`Ingrese número de DNI`),
+            $edad= parseInt(prompt(`Ingrese edad`)),
+            $DNI= parseInt(prompt(`Ingrese número de DNI`)),
             $direccion = prompt(`Ingrese dirección`).toLowerCase(),                                            
-            $telefono = prompt(`Ingrese teléfono`),
+            $telefono = parseInt(prompt(`Ingrese teléfono`)),
             $especialidad = prompt("Ingrese especilidad (ejemplo: frontend backend, fullstack, etc)").toLowerCase(),
-                
+        
             candidato1 = new Candidato($nombre, $edad, $DNI, $direccion, $telefono, $especialidad );
 
             $carpeta.push(candidato1);
@@ -47,17 +47,17 @@ function buscarCandidato(){
                         let $nombre = prompt("Ingrese el nombre del candidato a buscar").toLowerCase();
                         if ($nombre == "") (alert("No deje la selección vacia"),
                         $nombre = prompt("Ingrese el nombre del candidato a buscar").toLowerCase());
-                        const candidato1 = $carpeta.find( cand => cand.nombre === $nombre)
-                        ?candidato1.mostrarPropiedades()
-                        :alert("No se encontró un candidato");
+                        let candidato = $carpeta.find( cand => cand.nombre === $nombre)
+                        candidato.mostrarPropiedades();
+                        
                         break;
                 case 2:
                         let $DNI = parseInt(prompt("Ingrese el número de DNI del candidato"));
-                        if ($DNI == NaN) (alert("Solo ingrese numeros"), 
-                        $DNI = parseInt(prompt("Ingrese el número de DNI del candidato")));
-                        const candidato2 = $carpeta.find( cand => cand.DNI === $DNI)
-                        ?candidato2.mostrarPropiedades()
-                        :alert("No se encontró un candidato");
+                        if ($carpeta.find( cand => cand.DNI != $DNI)) alert("No se encontró un candidato, ¡Hasta luego!"); 
+                        let candidato2 = $carpeta.find( cand => cand.DNI === $DNI);
+                        candidato2.mostrarPropiedades();
+                        
+                        
                         break;
                 default:
                         alert("no es una selección valida");
@@ -70,18 +70,18 @@ function buscarCandidato(){
 
 
 
-alert("bienvenidos al simulador de reclutamiento IT");
+alert("Bienvenidos al simulador de reclutamiento IT");
 
 $confirmacion=confirm("¿Desea agregar un nuevo candidato?");
 
 $confirmacion==false
-? alert("hasta luego")
+? alert("¡Hasta luego!")
 : agregarCandidato();
 
 do{
     $confirmacion=confirm("¿Desea buscar candidatos?");
     
     $confirmacion==false
-    ?alert("hasta luego")
+    ?alert("¡Hasta luego!")
     :buscarCandidato();
 }while($confirmacion==true)
