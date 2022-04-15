@@ -7,24 +7,25 @@
     <link href="css/styles.css" rel="stylesheet" />
 
     <title>Staff Selection</title>
-    </head>
+  </head>
 
-    <body>
-      <header>
-        <!-- ************************* -->
+  <body>
+    <header>
+      <!-- ************************* -->
       <!-- ***** Inicio Header ***** -->
       <!-- ************************* -->
 
       <!-- Imagen de banner, contenedor fluid de bootstraps -->
       <div class="container-fluid">
-        
         <picture>
-          <source 
-            class="logoHeader__banner rounded border-1 img-fluid mx-auto d-block "
-            srcset="assets\images\staff-selection-banner-1000px.webp" alt="Banner - staff selection">
+          <source
+            class="logoHeader__banner rounded border-1 img-fluid mx-auto d-block"
+            srcset="assets\images\staff-selection-banner-1000px.webp"
+            alt="Banner - staff selection"
+          />
 
           <img
-            class="logoHeader__banner shadow  bg-primary rounded  img-fluid mx-auto d-block"
+            class="logoHeader__banner shadow bg-primary rounded img-fluid mx-auto d-block"
             src="assets\images\staff-selection-banner-1000px.jpeg"
             alt="Banner"
           />
@@ -34,53 +35,82 @@
       <div class="b-example-divider"></div>
 
       <!-- ***** inicio del menu de navegación *****-->
-        <section class="container">
-          <article class="d-flex flex-wrap glass-greenty-card align-items-center justify-content-center justify-content-md-between
-            py-3 mb-4 mt-4   rounded shadow">
-            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-              <svg class="bi me-2" color="purple" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-            </a>
-      
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="#" class="nav-link px-2 text-primary link-secondary active">Inicio</a></li>
-              <li><a href="#" class="nav-link px-2 text-primary link-dark">Enrolamiento</a></li>
-              <li><a href="#" class="nav-link px-2 text-primary link-dark">Busquedas</a></li>
-              <li><a href="#" class="nav-link px-2 text-primary link-dark">Ayuda</a></li>
-            </ul>
-      
-            <div class="col-md-3 text-end">
-              <button type="button" class="btn btn-outline-primary me-2">Ingresar</button>
-              <button type="button" class="btn btn-primary">Registrarse</button>
-            </div>
+      <section class="container">
+        <article
+          class="d-flex flex-wrap glass-greenty-card align-items-center justify-content-center justify-content-md-between py-3 mb-4 mt-4 rounded shadow"
+        >
+          <a
+            href="/"
+            class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
+          >
+            <svg
+              class="bi me-2"
+              color="purple"
+              width="40"
+              height="32"
+              role="img"
+              aria-label="Bootstrap"
+            >
+              <use xlink:href="#bootstrap" />
+            </svg>
+          </a>
 
-            <div class="b-example-divider"></div>
+          <ul
+            class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"
+          >
+            <li>
+              <a
+                href="index.html"
+                class="nav-link px-2 text-primary link-secondary active"
+                >Inicio</a
+              >
+            </li>
+            <li>
+              <a href="pages/enrolamiento.html" class="nav-link px-2 text-primary link-dark"
+                >Enrolamiento</a
+              >
+            </li>
+            <li>
+              <a href="pages/busqueda.html" class="nav-link px-2 text-primary link-dark"
+                >Busquedas</a
+              >
+            </li>
+            <li>
+              <a href="pages/ayuda.html" class="nav-link px-2 text-primary link-dark">Ayuda</a>
+            </li>
+          </ul>
 
-
-          </article>
-        </section>
-      </header>
-
-      <main>
-
-
-      </main>
-
-      <footer class="glass-celesty-card mt-5">
-        <div class="container-fluid pt-1 mt-1 mb-0">
-          <div class=" text-center">
-            <h4 class="  d-inline-block glass-greenty-card mt-3 p-4">Todas tus vacantes completas</h4>
+          <div class="col-md-3 text-end">
+            <button type="button" class="btn btn-outline-primary me-2">
+              Ingresar
+            </button>
+            <button type="button" class="btn btn-primary">Registrarse</button>
           </div>
-  
-          
-            
-          <div class="text-center glass-greenty-card p-3 mt-3 mb-5">
-            <h5 class="text-center">Staff Selection 2022 &#169;</h5>
-            <h5 class="text-center   ">Todos los derechos reservados</h5>
-          </div>
+
+          <div class="b-example-divider"></div>
+        </article>
+      </section>
+    </header>
+
+    <main></main>
+
+    <footer class="glass-celesty-card mt-5">
+      <div class="container-fluid pt-1 mt-1 mb-0">
+        <div class="text-center">
+          <h4 class="d-inline-block glass-greenty-card mt-3 p-4">
+            Todas tus vacantes completas
+          </h4>
         </div>
-      </footer>
+
+        <div class="text-center glass-greenty-card p-3 mt-3 mb-5">
+          <h5 class="text-center">Staff Selection 2022 &#169;</h5>
+          <h5 class="text-center">Todos los derechos reservados</h5>
+        </div>
+      </div>
+    </footer>
 
     <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- script para la entrega -->
     <script src="js/candidatos.js"></script>
-    </body>
+  </body>
 </html>
