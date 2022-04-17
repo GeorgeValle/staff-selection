@@ -21,7 +21,7 @@ class Candidato{
     
 
 }
-// para agregar candaidatos
+// para agregar candidatos
 function agregarCandidato(){
     do{               
         let $nombre= prompt(`Ingrese nombre`).toLowerCase(),
