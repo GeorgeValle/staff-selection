@@ -14,7 +14,7 @@ class Candidato{
         this.especialidad = especialidad;
         // this.ID = this.newID;
     }
-    // muestra todas la propiedades de un objeto candidato
+    // muestra todas la propiedades de un objeto candidato (pero no se porque no ejecuta si la invoco)
     mostrarPropiedades() {
         `
                             <article class="col card-text found glass-greenty-card p-3 mb-3 mt-2" style="width:30rem">
@@ -99,7 +99,7 @@ function buscarCandidato(){
                         const $porNombre = document.getElementById("father1");
                         
                         let divi = document.createElement("divi");
-                        //divi.innerHTML = candidato.mostrarPropiedades();
+                        // divi.innerHTML = candidato.mostrarPropiedades();
                             divi.innerHTML = `<article class="col card-text found glass-greenty-card p-3 mb-3 mt-2" style="width:30rem">
                                     <h3>Candidato: ${candidato.nombre}</h3>
                                     <p> DNI: ${candidato.DNI} </p>
@@ -115,7 +115,7 @@ function buscarCandidato(){
                 //te busca un objeto candidato por el numero de DNI
                 case 2:
                         let $DNI = parseInt(prompt("Ingrese el número de DNI del candidato"));
-                        if ($carpeta.some( cand => cand.DNI != $DNI)) alert("No se encontró un candidato, ¡Hasta luego!"); 
+                        // if ($carpeta.some( cand => cand.DNI != $DNI)) alert("No se encontró un candidato, ¡Hasta luego!"); 
                         let candidato2 = $carpeta.find( cand => cand.DNI === $DNI);
 
                         const $container = document.getElementById("father1");
@@ -160,7 +160,6 @@ function buscarCandidato(){
                                 alert("Busqueda Impresa en Web"); 
                         }
 
-                        // alert(`Los candidatos encontrados son: ${$listaNombres}. `);
                         break;
 
                 default:
