@@ -11966,7 +11966,7 @@ fieldset:disabled .btn {
 de redes sociales*/
 /* efecto vidrio */
 .glass-celesty-card {
-  background: rgba(18, 255, 247, 0.25);
+  background-color: rgba(18, 255, 247, 0.25);
   -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
           box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   -webkit-backdrop-filter: blur(8px);
@@ -11976,7 +11976,7 @@ de redes sociales*/
 }
 
 .glass-greenty-card {
-  background: rgba(179, 255, 171, 0.25);
+  background-color: rgba(179, 255, 171, 0.25);
   -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
           box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   -webkit-backdrop-filter: blur(8px);
@@ -12002,8 +12002,13 @@ body {
   max-width: 95%;
 }
 
+.form_edit_modifed {
+  min-width: 30rem;
+  max-width: 100%;
+}
+
 .found {
   max-width: 100%;
-  min-width: 25rem;
+  min-width: 26rem;
 }
 /*# sourceMappingURL=styles.css.map */

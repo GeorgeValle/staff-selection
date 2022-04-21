@@ -69,38 +69,39 @@
     <main>
 
         <h1 class="text-center text-primary">Carga de candidatos</h1>
-        <section class="container-fluid glass-celesty-card" style="max-width: 95%">
+        <section class="container-fluid glass-celesty-card section_edit">
             <section class="row overflow_x ">
                 <article class="col mb-4 d-flex justify-content-center">
-                    <form class="form glass-greenty-card p-3 my-2"style="max-width: 23rem; width: 100%; height: 38rem">
+                    <form id="carga" class="form glass-greenty-card form_edit p-3 my-2">
                         <label>Nombre y Apellido</label>
                         <input class="form-control form-control-sm my-2" type="text" 
-                            placeholder="Nombre Apellido" aria-label=".form-control-sm example">
+                            placeholder="Nombre Apellido" aria-label=".form-control-sm example" required>
                         <label>Edad</label>
-                        <input class="form-control form-control-sm my-2" type="text"
-                            placeholder="21 - Ejemplo" aria-label=".form-control-sm example">
+                        <input class="form-control form-control-sm my-2" type="number"
+                            placeholder="21 - Ejemplo" aria-label=".form-control-sm example" required>
                         <label>Numero de DNI (sin puntos)</label>
-                        <input class="form-control form-control-sm my-2" type="text"
-                            placeholder="11111111 - ejemplo" aria-label=".form-control-sm example">
+                        <input class="form-control form-control-sm my-2" type="number"
+                            placeholder="11111111 - ejemplo" aria-label=".form-control-sm example" minlength="6" maxlength="9" required>
                             <label>Provincia</label>
                         <input class="form-control form-control-sm my-2" type="text"
-                            placeholder="Buenaos Aires - ejemplo" aria-label=".form-control-sm example">
+                            placeholder="Buenos Aires - ejemplo" aria-label=".form-control-sm example" required>
                             <label>Ciudad</label>
                         <input class="form-control form-control-sm my-2" type="text"
-                            placeholder="La Plata - ejemplo" aria-label=".form-control-sm example">
+                            placeholder="La Plata - ejemplo" aria-label=".form-control-sm example" required>
                         <label>Dirección</label>
                         <input class="form-control form-control-sm my-2" type="text"
-                            placeholder="Avenida xxxxx 345 Barrio xxxxxxxx" aria-label=".form-control-sm example">
+                            placeholder="Avenida xxxxx 345 Barrio xxxxxxxx" aria-label=".form-control-sm example" required>
                         <label>Numero de Celular (con numero de area)</label>
-                        <input class="form-control form-control-sm my-2" type="text"
-                            placeholder=".form-control-sm" aria-label=".form-control-sm example">
+                        <input class="form-control form-control-sm my-2" type="tel"
+                            placeholder="351XXXXXXX - ejemplo" aria-label=".form-control-sm example" required>
                         <label>Seleccione Especialidad</label>
-                        <select class="form-select my-2" aria-label="Default select example">
+                        <select class="form-select my-2" aria-label="Default select example" required>
                             <option selected>Elija una Opción</option>
                             <option value="Frontend">Frontend</option>
                             <option value="Backend">Backend</option>
                             <option value="Fullstack">Fullstack</option>
                         </select>
+                        <input  class="mt_2 btn btn-success" type="submit" value="Cargar Datos"/>
 
 
 
@@ -128,6 +129,7 @@
     </footer>
 
     <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="..\js\cargaStorage.js"></script>
 
 </body>
 
