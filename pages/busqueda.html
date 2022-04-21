@@ -70,13 +70,48 @@
     <!-- ************************* -->
     <main>
         <h1 class="text-center text-primary">Busqueda de Candidatos</h1>
+
+        <section class="container-fluid glass-celesty-card force my-5">
+            <section class="row overflow_x ">
+                <article class="col mb-4 d-flex  justify-content-center">
+                    <form class="form glass-greenty-card form_edit_modifed p-3 my-2">
+                        <div id="xNombre">
+                            <label>Por Nombre</label>
+                            <input class="form-control form-control-sm my-2" type="search" 
+                                placeholder="Nombre Apellido" aria-label=".form-control-sm example">
+                                <button id="forName" type="submit" class="btn btn-success btn-front">Buscar</button>
+                            
+                            <span class="error1" aria-live="polite"></span>
+                        </div>
+                        <div id="xDNI">
+                            <label>Por Nº DNI</label>
+                            <input class="form-control form-control-sm my-2" type="search" 
+                                placeholder="Número de DNI (sin puntos)" aria-label=".form-control-sm example">
+                                <button id="forDNI" type="submit" class="btn btn-success btn-front">Buscar</button>
+                                <span class="error2" aria-live="polite"></span>
+                            
+                        </div>
+                        <label>Busqueda por Especialidad </label>
+                        <div id="xEspecialidad" class="btn-group" role="group" aria-label="Busqueda por Especialidad">
+                            
+                            <button id="front" type="button" class="btn btn-success btn-front">Frontend</button>
+                            <button id="back" type="button" class="btn btn-success btn-back">Backend</button>
+                            <button id="full" type="button" class="btn btn-success btn-full">Fullstack</button>
+                        
+                    </form>
+                </article>
+            </section>
+        </section>
+        <h2 class="text-center text-primary">Listado de Busqueda</h2>
         <section class="container-fluid mt-2 mb-3 ">
             <article id="father1" class="row overflow_x mx-auto force glass-celesty-card ">
                 
             </article>
         </section>
     </main>
-
+    <!-- ************************ -->
+    <!-- **** Inicio Footer ***** -->
+    <!-- ************************ -->
     <footer class="glass-celesty-card mt-5">
         <div class="container-fluid pt-1 mt-1 mb-0">
             <div class="text-center">
@@ -94,7 +129,7 @@
     
     <script src="../libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- script para la entrega de DOM -->
-    <script src="../js/busqueda.js"></script>
+    <script src="../js/busquedaStorage.js"></script>
 </body>
 
 </html>
