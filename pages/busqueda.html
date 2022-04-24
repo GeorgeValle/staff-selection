@@ -5,7 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- script de boostrap -->
+    <script src="../libs/bootstrap/dist/js/bootstrap.min.js" defer></script>
+    <!-- link css -->
     <link href="../css/styles.css" rel="stylesheet" />
+    <!-- link de los iconos de google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
 
     <title>Busqueda para las vacantes</title>
 </head>
@@ -68,41 +75,93 @@
     <!-- ************************* -->
     <!-- *** Inicio -> Main <-  ** -->
     <!-- ************************* -->
-    <main>
-        <h1 class="text-center text-primary">Busqueda de Candidatos</h1>
+    <main class="text-center">
+        <h1 class=" text-primary p-3 mt-5 d-inline-block glass-snow">Busqueda de Candidatos</h1>
+        
+        <!-- <span class="material-icons">
+            people
+            </span> -->
+
+
+            <!-- <span class="material-icons">
+                person_search
+                </span> -->
+
+
+                <!-- <span class="material-icons">
+                    error
+                    </span> -->
 
         <section class="container-fluid glass-celesty-card force my-5">
             <section class="row overflow_x ">
                 <article class="col mb-4 d-flex  justify-content-center">
-                    <form class="form glass-greenty-card form_edit_modifed p-3 my-2">
-                        <div id="xNombre">
-                            <label>Por Nombre</label>
-                            <input class="form-control form-control-sm my-2" type="search" 
-                                placeholder="Nombre Apellido" aria-label=".form-control-sm example">
-                                <button id="forName" type="submit" class="btn btn-success btn-front">Buscar</button>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                #1 Busqueda por Nombre
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <form id="xNombre" class="form glass-greenty-card form_edit_modifed p-3 my-2">
+                                        
+                                        <label>Por Nombre</label>
+                                        <input class="form-control form-control-sm my-2" type="search" 
+                                            placeholder="Nombre Apellido" aria-label=".form-control-sm example">
+                                            <button id="forName" type="submit" class="btn btn-success btn-front">Buscar</button>
                             
-                            <span class="error1" aria-live="polite"></span>
+                                            <span class="error1" aria-live="polite"></span>
+
+                                    </form>
+                                </div>            
+                            </div>                  
                         </div>
-                        <div id="xDNI">
-                            <label>Por Nº DNI</label>
-                            <input class="form-control form-control-sm my-2" type="search" 
-                                placeholder="Número de DNI (sin puntos)" aria-label=".form-control-sm example">
-                                <button id="forDNI" type="submit" class="btn btn-success btn-front">Buscar</button>
-                                <span class="error2" aria-live="polite"></span>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                #2 Busqueda por DNI
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <form id="xDNI" class="form glass-greenty-card form_edit_modifed p-3 my-2">
+                                        
+                                            <label>Por Nº DNI</label>
+                                            <input class="form-control form-control-sm my-2" type="search" 
+                                                placeholder="Número de DNI (sin puntos)" aria-label=".form-control-sm example">
+                                                <button id="forDNI" type="submit" class="btn btn-success btn-front">Buscar</button>
+                                                <span class="error2" aria-live="polite"></span>
                             
+                                        
+                                    </form>
+                                </div>    
+                            </div>        
+                        </div> 
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                    #3 Busqueda por Especialidad
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                        <label>Busqueda por Especialidad </label>
+                                        <div id="xEspecialidad" class="btn-group" role="group" aria-label="Busqueda por Especialidad">
+                            
+                                            <button id="front" type="button" class="btn btn-success btn-front">Frontend</button>
+                                            <button id="back" type="button" class="btn btn-success btn-back">Backend</button>
+                                            <button id="full" type="button" class="btn btn-success btn-full">Fullstack</button>
+                                        </div>
+                                </div>        
+                            </div>            
                         </div>
-                        <label>Busqueda por Especialidad </label>
-                        <div id="xEspecialidad" class="btn-group" role="group" aria-label="Busqueda por Especialidad">
-                            
-                            <button id="front" type="button" class="btn btn-success btn-front">Frontend</button>
-                            <button id="back" type="button" class="btn btn-success btn-back">Backend</button>
-                            <button id="full" type="button" class="btn btn-success btn-full">Fullstack</button>
-                        
-                    </form>
+                                    
+                    </div>
                 </article>
             </section>
-        </section>
-        <h2 class="text-center text-primary">Listado de Busqueda</h2>
+        </section class="text-center">
+        <h2 class="text-primary p-3 mt-5 d-inline-block glass-snow">Listado de Busqueda</h2>
         <section class="container-fluid mt-2 mb-3 ">
             <article id="father1" class="row overflow_x mx-auto force glass-celesty-card ">
                 
@@ -127,9 +186,10 @@
         </div>
     </footer>
     
-    <script src="../libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    
     <!-- script para la entrega de DOM -->
     <script src="../js/busquedaStorage.js"></script>
+    
 </body>
 
 </html>

@@ -5,6 +5,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- script de bootstrap -->
+    <script src="../libs/bootstrap/dist/js/bootstrap.min.js" defer></script>
+
+    <!-- link de los iconos de google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+    
+        <!-- link del css -->
     <link href="../css/styles.css" rel="stylesheet" />
 
     <title>Carga de Candidatos</title>
@@ -15,6 +24,10 @@
         <!-- ************************* -->
         <!-- ***** Inicio Header ***** -->
         <!-- ************************* -->
+
+
+        
+
 
         <!-- Imagen de banner, contenedor fluid de bootstraps -->
         <div class="container-fluid">
@@ -66,50 +79,70 @@
         </section>
     </header>
 
-    <main>
+    <main class="text-center">
 
-        <h1 class="text-center text-primary">Carga de candidatos</h1>
+        <aside id="modal" class="modal modal_edit " tabindex="-1" >
+            <article class="modal-dialog">
+                <div class="modal-content glass-greenty-card">
+                    <div  class="modal-header" >
+                        <button id="closeModalCarga" type="button" class="btn-close  p-2 glass-snow" data-bs-dismiss="modal"></button>                
+                        
+                    </div>
+                    <div class="modal-body" >
+                        <h5 class=" text-primary text-center  p-2 ">Carga Exitosa</h5>
+                        <!-- <span class="material-icons">
+                            person_add
+                        </span> -->
+                    </div>
+                </div>
+            </article>
+        </aside>
+
+        <h1 class=" text-primary p-3 mt-5 d-inline-block glass-snow">Carga de candidatos</h1>
         <section class="container-fluid glass-celesty-card section_edit">
             <section class="row overflow_x ">
                 <article class="col mb-4 d-flex justify-content-center">
-                    <form id="carga" class="form glass-greenty-card form_edit p-3 my-2">
-                        <label>Nombre y Apellido</label>
-                        <input class="form-control form-control-sm my-2" type="text" 
-                            placeholder="Nombre Apellido" aria-label=".form-control-sm example" required>
-                        <label>Edad</label>
-                        <input class="form-control form-control-sm my-2" type="number"
-                            placeholder="21 - Ejemplo" aria-label=".form-control-sm example" required>
-                        <label>Numero de DNI (sin puntos)</label>
-                        <input class="form-control form-control-sm my-2" type="number"
-                            placeholder="11111111 - ejemplo" aria-label=".form-control-sm example" minlength="6" maxlength="9" required>
-                            <label>Provincia</label>
+                    <form id="carga" class=" form glass-greenty-card form_edit p-3 my-2">
+                        <label class="label">Nombre y Apellido</label>
+                        <input class="form-control form-control-sm my-2" type="text" placeholder="Nombre Apellido"
+                            required>
+                            
+                        <label class="label" >Edad</label>
+                        <input  class="form-control form-control-sm my-2" type="number" placeholder="21 - Ejemplo"
+                            aria-label=".form-control-sm example" required>
+                            
+                        <label class="label" >Numero de DNI (sin puntos)</label>
+                        <input class="form-control form-control-sm my-2" type="number" placeholder="11111111 - ejemplo"
+                            aria-label=".form-control-sm example" minlength="6" maxlength="9" required>
+                        <label class="label" >Provincia</label>
                         <input class="form-control form-control-sm my-2" type="text"
                             placeholder="Buenos Aires - ejemplo" aria-label=".form-control-sm example" required>
-                            <label>Ciudad</label>
+                        <label class="label" >Ciudad</label>
+                        <input class="form-control form-control-sm my-2" type="text" placeholder="La Plata - ejemplo"
+                            aria-label=".form-control-sm example" required>
+                        <label class="label" >Dirección</label>
                         <input class="form-control form-control-sm my-2" type="text"
-                            placeholder="La Plata - ejemplo" aria-label=".form-control-sm example" required>
-                        <label>Dirección</label>
-                        <input class="form-control form-control-sm my-2" type="text"
-                            placeholder="Avenida xxxxx 345 Barrio xxxxxxxx" aria-label=".form-control-sm example" required>
-                        <label>Numero de Celular (con numero de area)</label>
-                        <input class="form-control form-control-sm my-2" type="tel"
-                            placeholder="351XXXXXXX - ejemplo" aria-label=".form-control-sm example" required>
-                        <label>Seleccione Especialidad</label>
-                        <select class="form-select my-2" aria-label="Default select example" required>
+                            placeholder="Avenida xxxxx 345 Barrio xxxxxxxx" aria-label=".form-control-sm example"
+                            required>
+                        <label class="label" >Numero de Celular (con numero de area)</label>
+                        <input class="form-control form-control-sm my-2" type="tel" placeholder="351XXXXXXX - ejemplo"
+                            aria-label=".form-control-sm example" required>
+                        <label class="label" >Seleccione Especialidad</label>
+                        <select required class="form-select mt-2 mb-5" aria-label="Default select example" >
                             <option selected>Elija una Opción</option>
                             <option value="Frontend">Frontend</option>
                             <option value="Backend">Backend</option>
                             <option value="Fullstack">Fullstack</option>
                         </select>
-                        <input  class="mt_2 btn btn-success" type="submit" value="Cargar Datos"/>
+                        <input class="mt_5 btn btn-success" type="submit" value="Cargar Datos" />
 
 
 
 
                     </form>
-                </article> 
-            </section> 
-        </section>  
+                </article>
+            </section>
+        </section>
 
     </main>
 
@@ -128,7 +161,6 @@
         </div>
     </footer>
 
-    <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="..\js\cargaStorage.js"></script>
 
 </body>
