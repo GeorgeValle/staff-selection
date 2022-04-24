@@ -54,7 +54,7 @@ function buscarXDNI(e){
     
     let formulario = e.target,
     $DNI = parseInt(formulario.children[1].value);
-
+    let $carpeta;
     let carpeta = localStorage.getItem('carpeta');
     carpeta==null||carpeta==""
     ?alert('No hay candidatos cargados')
@@ -86,6 +86,7 @@ function buscarXDNI(e){
                     
 }
 function buscarXFront(){
+    let $carpeta;
     let carpeta = localStorage.getItem('carpeta');
     if(carpeta==null||carpeta=="")alert('No hay candidatos cargados');
     $carpeta = JSON.parse(carpeta);
@@ -111,7 +112,7 @@ function buscarXFront(){
 }
 
 function buscarXBack(){
-
+    let $carpeta;
     let carpeta = localStorage.getItem('carpeta');
     if(carpeta==null||carpeta=="")alert('No hay candidatos cargados');
     $carpeta = JSON.parse(carpeta);
@@ -139,6 +140,7 @@ function buscarXBack(){
 
 }
 function buscarXFull(){
+    let $carpeta;
     let carpeta = localStorage.getItem('carpeta');
     if(carpeta==null||carpeta=="")alert('No hay candidatos cargados');
     $carpeta = JSON.parse(carpeta);

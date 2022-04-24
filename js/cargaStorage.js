@@ -33,6 +33,25 @@ class Candidato{
 
 }
 
+
+
+function showModal() {
+    document.getElementById('modal').style.display = 'block';
+}
+
+
+//For close my beautifull modal
+const $btnCloseModal = document.getElementById('closeModalCarga');
+
+$btnCloseModal.addEventListener('click', closeModal);
+
+function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+}
+
+
+
+
 let formularioCarga = document.getElementById("carga")
 formularioCarga.addEventListener("submit", enviarFormulario);
 
@@ -57,8 +76,8 @@ function enviarFormulario(e){
         let $ID = $numeroID;
 
 
-        candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono, $especialidad, $ID );
-        
+        let candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono, $especialidad, $ID );
+        let $carpeta;
         let carpeta = localStorage.getItem('carpeta');
         carpeta==null||carpeta==""
         ?$carpeta = new Array()
@@ -70,6 +89,8 @@ function enviarFormulario(e){
 
         const $carpetaJSON = JSON.stringify($carpeta);
         localStorage.setItem('carpeta', $carpetaJSON);
-        alert("Carga Exitosa")
-
+        showModal();
+        document.getElementById('carga').reset();
+        
 }
+
