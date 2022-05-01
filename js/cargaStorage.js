@@ -68,20 +68,28 @@ function enviarFormulario(e){
         $especialidad = formulario.children[15].value;
         
         
-        let $NID = localStorage.getItem('numeroID');
-        $NID==null 
-        ?$numeroID=0
-        :$numeroID=JSON.parse($NID);
+        //optimizado
+        let $NID = localStorage.getItem('numeroID')||'0';
+        //lo que estaba antes y fue optimizado
+        // $NID==null 
+        // ?$numeroID=0
+        // :$numeroID=JSON.parse($NID);
+
+        //optimizado
+        $numeroID=JSON.parse($NID)
         
         let $ID = $numeroID;
 
 
         let candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono, $especialidad, $ID );
         let $carpeta;
-        let carpeta = localStorage.getItem('carpeta');
-        carpeta==null||carpeta==""
-        ?$carpeta = new Array()
-        :$carpeta = JSON.parse(carpeta);
+        //optimisado
+        let carpeta = localStorage.getItem('carpeta')|| '[]';
+        // carpeta==null||carpeta==""
+        // ?$carpeta = new Array()
+        // :$carpeta = JSON.parse(carpeta);
+        $carpeta = JSON.parse(carpeta);
+
         $carpeta.push(candidato1);
 
         $numeroID++;
@@ -89,8 +97,12 @@ function enviarFormulario(e){
 
         const $carpetaJSON = JSON.stringify($carpeta);
         localStorage.setItem('carpeta', $carpetaJSON);
-        showModal();
         document.getElementById('carga').reset();
+        showModal();
+        //le agregué setTimeout para que fuese un alert mas que modal
+        setTimeout(closeModal, 2500);
+
+        
         
 }
 

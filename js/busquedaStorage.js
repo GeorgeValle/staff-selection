@@ -21,6 +21,7 @@ function showModalBusqueda(texto){
     div.innerHTML = `<h5 class=" text-primary remove-text text-center p-3 d-inline-block glass-snow ">${texto}</h5>`;
     $container.appendChild(div);
     document.getElementById('modal').style.display = 'block';
+    setTimeout(closeModal, 2500);
 }
 
 
@@ -43,6 +44,47 @@ function removeSearch() {
     };
 }
 
+
+function imprimirBusqueda(candidato){
+    const $porNombre = document.getElementById("father1");
+        
+                        
+    let divi = document.createElement("divi");
+    // divi.innerHTML = candidato.mostrarPropiedades();
+    divi.innerHTML =   `<article class="col card-text found remove-search glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
+                            <h3>Candidato: ${candidato.nombre}</h3>
+                            <p> Edad: ${candidato.edad} </p>
+                            <p> DNI: ${candidato.DNI} </p>
+                            <p> Dirección: ${candidato.direccion} </p>
+                            <p> Telefono: ${candidato.telefono} </p>
+                            <p> Especialidad: ${candidato.especialidad} </p>
+                        </article>`;
+                    $porNombre.appendChild(divi);
+                    showModalBusqueda("Candidato Impreso en Web"); // agregar icono al modal
+                    // limpia el input de busqueda
+                    
+                    
+                    // candidato.mostrarPropiedades();
+}
+
+//imprime los candiadtos por especialidad
+function imprimirMultiple($filtroEspecialidad){
+for(let i = 0; i < $filtroEspecialidad.length; i++) {
+    let candidato = $filtroEspecialidad[i];
+    const $porEspecialidad = document.getElementById("father1");
+    let divi = document.createElement("divi");
+    divi.innerHTML = `<article class="col card-text remove-search found glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
+                        <h3>Candidato: ${candidato.nombre}</h3>
+                        <p> Edad: ${candidato.edad} </p>
+                        <p> DNI: ${candidato.DNI} </p>
+                        <p> Dirección: ${candidato.direccion} </p>
+                        <p> Telefono: ${candidato.telefono} </p>
+                        <p> Especialidad: ${candidato.especialidad} </p>
+                    </article>`;
+    $porEspecialidad.appendChild(divi);
+    showModalBusqueda("Busqueda Impresa en Web"); // agregar icono al modal
+                }
+}
 //función que busca por nombre
 function buscarXNombre(e){
     e.preventDefault();
@@ -50,42 +92,31 @@ function buscarXNombre(e){
     let $carpeta;
     let formulario = e.target,
     $nombre = formulario.children[1].value;
-
-    let carpeta = localStorage.getItem('carpeta');
-    if(carpeta==null||carpeta=="") alert('No hay candidatos cargados')
+    document.getElementById('xNombre').reset();
+    //optimisado
+    let carpeta = localStorage.getItem('carpeta')
+    ||showModalBusqueda('No hay candidatos cargados');
+    //como estaba antes
+    //if(carpeta==null||carpeta=="") alert('No hay candidatos cargados')
+        
+    try {
     $carpeta = JSON.parse(carpeta);
-
-    
-    if($carpeta.some( cand => cand.nombre != $nombre.toLowerCase())){ 
-        showModalBusqueda('No se encontró un candidato'); //agregar icono
-        document.getElementById('xNombre').reset();
-    }
+        
         //trae al objeto candidato de array
-        let candidato = $carpeta.find( cand => cand.nombre === $nombre.toLowerCase())
+        let candidato = $carpeta.find( cand => cand.nombre === $nombre.toLowerCase());
 
         //elimina el listado de la busqueda anterior
-        removeSearch()
-    
-        
-        const $porNombre = document.getElementById("father1");
-        
-                        
-        let divi = document.createElement("divi");
-        // divi.innerHTML = candidato.mostrarPropiedades();
-        divi.innerHTML =   `<article class="col card-text found remove-search glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
-                                <h3>Candidato: ${candidato.nombre}</h3>
-                                <p> Edad: ${candidato.edad} </p>
-                                <p> DNI: ${candidato.DNI} </p>
-                                <p> Dirección: ${candidato.direccion} </p>
-                                <p> Telefono: ${candidato.telefono} </p>
-                                <p> Especialidad: ${candidato.especialidad} </p>
-                            </article>`;
-                        $porNombre.appendChild(divi);
-                        showModalBusqueda("Candidato Impreso en Web"); // agregar icono al modal
-                        // limpia el input de busqueda
-                        document.getElementById('xNombre').reset();
-                        
-                        // candidato.mostrarPropiedades();
+        removeSearch();
+
+
+        $carpeta.some( cand => cand.nombre != $nombre.toLowerCase())==true 
+        ?showModalBusqueda('No se encontró un candidato') //agregar icono
+        :imprimirBusqueda(candidato);
+    }
+    catch{
+
+    };
+
 }                      
 
 
@@ -96,159 +127,118 @@ function buscarXDNI(e){
     
     let formulario = e.target,
     $DNI = parseInt(formulario.children[1].value);
+    document.getElementById('xDNI').reset();
     let $carpeta;
-    let carpeta = localStorage.getItem('carpeta');
-    carpeta==null||carpeta==""
-    ?showModalBusqueda('No hay candidatos cargados')//alert('No hay candidatos cargados')// 
-    :$carpeta = JSON.parse(carpeta);
+    
+    let carpeta = localStorage.getItem('carpeta')
+    // carpeta==null||carpeta==""
+    ||showModalBusqueda('No hay candidatos cargados')//alert('No hay candidatos cargados')// 
+        try{
+            $carpeta = JSON.parse(carpeta);
                 
-                        
-            if($carpeta.some( cand => parseInt(cand.DNI) != $DNI)){ 
-            showModalBusqueda('No se encontró un candidato'); //alert("No se encontró un candidato"); 
-            document.getElementById('xDNI').reset();
-            }
-            
-            let candidato2 = $carpeta.find( cand => parseInt(cand.DNI) === $DNI);
+            //antes del optimizado           
+            // if($carpeta.some( cand => parseInt(cand.DNI) != $DNI)){ 
+            // showModalBusqueda('No se encontró un candidato'); //alert("No se encontró un candidato"); 
+            // document.getElementById('xDNI').reset();
+            // }
 
             //elimina el listado de la busqueda anterior
-            removeSearch()      
+            removeSearch();
+            
+            let candidato2 = $carpeta.find( cand => parseInt(cand.DNI) === $DNI)
 
-            //imprimiremos la nueva busqueda
-            const $container = document.getElementById("father1");
-                        
-            let div = document.createElement("div");
-            //¿porque me da undefined si uso el metodo de la clase?
-            //div.innerHTML = candidato2.mostrarPropiedades();
-
-            div.innerHTML = `<article class="col card-text found remove-search glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
-                                <h3>Candidato: ${candidato2.nombre}</h3>
-                                <p> Edad: ${candidato2.edad} </p>
-                                <p> DNI: ${candidato2.DNI} </p>
-                                <p> Dirección: ${candidato2.direccion} </p>
-                                <p> Telefono: ${candidato2.telefono} </p>
-                                <p> Especialidad: ${candidato2.especialidad} </p>
-                            </article>`;
-
-            $container.appendChild(div);
-                    showModalBusqueda('Candidato Impreso en Web')//alert("Candidato Impreso en Web");
-                    document.getElementById('xDNI').reset();
-                        
+            $carpeta.some( cand => parseInt(cand.DNI) != $DNI)==false
+            ?imprimirBusqueda(candidato2) //imprimiremos la nueva busqueda
+            :showModalBusqueda('No se encontró un candidato');
+        }
+        catch{};
                     
 }
 
 // funcion que busca por especialidad frontend
 function buscarXFront(){
     let $carpeta;
-    let carpeta = localStorage.getItem('carpeta');
-    if(carpeta==null||carpeta=="")showModalBusqueda('No hay candidatos cargados')//alert('No hay candidatos cargados');
+    let carpeta = localStorage.getItem('carpeta')
+    ||showModalBusqueda('No hay candidatos cargados');
+    try{
     $carpeta = JSON.parse(carpeta);
 
+    /* se fitran los candidatos con la especialidad escrita creando un nuevo array */       
+    const $filtroEspecialidad = $carpeta.filter(cand => cand.especialidad.includes('Frontend'));
+    //quita la busqueda anterior
+    removeSearch();
 
-        //controla que haya candidatos con esa especialidad
-        if($carpeta.some(cand => cand.especialidad.includes('Frontend'))==false)
-        {showModalBusqueda('"NO" hay candidatos con esa especialidad')}; // agregar icono  
-                        
-        /* se fitran los candidatos con la especialidad escrita creando un nuevo array */
-        const $filtroEspecialidad = $carpeta.filter(cand => cand.especialidad.includes('Frontend'));
+    //controla que haya candidatos con esa especialidad
+    $carpeta.some(cand => cand.especialidad.includes('Frontend'))==false
+    ?showModalBusqueda('"NO" hay candidatos con esa especialidad') // agregar icono  
+    :imprimirMultiple($filtroEspecialidad);
+    }
+    catch{};
         
-        //elimina el listado de la busqueda anterior
-        removeSearch()
-
-        
-        /* Te imprime en el html todos los candidatos con esa especialidad  */
-        for(let i = 0; i < $filtroEspecialidad.length; i++) {
-            let candidato = $filtroEspecialidad[i];
-            const $porEspecialidad = document.getElementById("father1");
-            let divi = document.createElement("divi");
-            divi.innerHTML = `<article class="col card-text remove-search found glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
-                                <h3>Candidato: ${candidato.nombre}</h3>
-                                <p> Edad: ${candidato.edad} </p>
-                                <p> DNI: ${candidato.DNI} </p>
-                                <p> Dirección: ${candidato.direccion} </p>
-                                <p> Telefono: ${candidato.telefono} </p>
-                                <p> Especialidad: ${candidato.especialidad} </p>
-                            </article>`;
-            $porEspecialidad.appendChild(divi);
-            showModalBusqueda("Busqueda Impresa en Web"); // agregar icono al modal
-                        }
+        //*********************asi estaba antes del optimisado:
+        // /* Te imprime en el html todos los candidatos con esa especialidad  */
+        // for(let i = 0; i < $filtroEspecialidad.length; i++) {
+        //     let candidato = $filtroEspecialidad[i];
+        //     const $porEspecialidad = document.getElementById("father1");
+        //     let divi = document.createElement("divi");
+        //     divi.innerHTML = `<article class="col card-text remove-search found glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
+        //                         <h3>Candidato: ${candidato.nombre}</h3>
+        //                         <p> Edad: ${candidato.edad} </p>
+        //                         <p> DNI: ${candidato.DNI} </p>
+        //                         <p> Dirección: ${candidato.direccion} </p>
+        //                         <p> Telefono: ${candidato.telefono} </p>
+        //                         <p> Especialidad: ${candidato.especialidad} </p>
+        //                     </article>`;
+        //     $porEspecialidad.appendChild(divi);
+        //     showModalBusqueda("Busqueda Impresa en Web"); // agregar icono al modal
+        //                 }
 }
 
 function buscarXBack(){
     let $carpeta;
-    let carpeta = localStorage.getItem('carpeta');
-    if(carpeta==null||carpeta=="")showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
-    $carpeta = JSON.parse(carpeta);
+    let carpeta = localStorage.getItem('carpeta')||
+    showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
+    
+    try{
+        $carpeta = JSON.parse(carpeta);
 
-        //controla que haya candidatos con esa especialidad
-        if($carpeta.some(cand => cand.especialidad.includes('Backend'))==false)
-        {showModalBusqueda('"NO" hay candidatos con esa especialidad')}; // agregar icono              
+
+        //elimina el listado de la busqueda anterior
         /* se fitran los candidatos con la especialidad escrita creando un nuevo array */
         const $filtroEspecialidad = $carpeta.filter(cand => cand.especialidad.includes('Backend'));
-        
-        //elimina el listado de la busqueda anterior
         removeSearch()
-        
-        
-        /* Te imprime en el html todos los candidatos con esa especialidad  */
-        for(let i = 0; i < $filtroEspecialidad.length; i++) {
-                let candidato = $filtroEspecialidad[i];
-                const $porEspecialidad = document.getElementById("father1");
-                let divi = document.createElement("divi");
-                divi.innerHTML = `<article class="col card-text found remove-search glass-greenty-card p-3 mb-3 mt-2" style="width:30rem">
-                                    <h3>Candidato: ${candidato.nombre}</h3>
-                                    <p> Edad: ${candidato.edad} </p>
-                                    <p> DNI: ${candidato.DNI} </p>
-                                    <p> Dirección: ${candidato.direccion} </p>
-                                    <p> Telefono: ${candidato.telefono} </p>
-                                    <p> Especialidad: ${candidato.especialidad} </p>
-                                </article>`;
-                $porEspecialidad.appendChild(divi);
-                showModalBusqueda("Busqueda Impresa en Web"); // agregar icono al modal
-        }
-                        
-                        
-                        
 
+        //controla que haya candidatos con esa especialidad
+        $carpeta.some(cand => cand.especialidad.includes('Backend'))==false
+        ?showModalBusqueda('"NO" hay candidatos con esa especialidad') // agregar icono 
+        :imprimirMultiple($filtroEspecialidad); /*imprime todos los candidatos con esa especialidad*/
+        
+    }
+    catch{};                                           
 }
+
 function buscarXFull(){
     let $carpeta;
-    let carpeta = localStorage.getItem('carpeta');
-    if(carpeta==null||carpeta=="")showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
+    let carpeta = localStorage.getItem('carpeta')||
+    showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
+    try{
     $carpeta = JSON.parse(carpeta);
 
-    //controla que haya candidatos con esa especialidad
-    if($carpeta.some(cand => cand.especialidad.includes('Fullstack'))==false)
-    {showModalBusqueda('"NO" hay candidatos con esa especialidad')}; // agregar icono al modal
-                        
     /* se fitran los candidatos con la especialidad escrita creando un nuevo array */   
     const $filtroEspecialidad = $carpeta.filter(cand => cand.especialidad.includes('Fullstack'));
 
     //elimina el listado de la busqueda anterior
-    removeSearch()
+    removeSearch();
 
-
-
-    /* Te imprime en el html todos los candidatos con esa especialidad  */
-    for(let i = 0; i < $filtroEspecialidad.length; i++) {
-            let candidato = $filtroEspecialidad[i];
-            const $porEspecialidad = document.getElementById("father1");
-            let divi = document.createElement("divi");
-            divi.innerHTML = `<article class="col card-text remove-search found glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
-                                <h3>Candidato: ${candidato.nombre}</h3>
-                                <p> Edad: ${candidato.edad} </p>
-                                <p> DNI: ${candidato.DNI} </p>
-                                <p> Dirección: ${candidato.direccion} </p>
-                                <p> Telefono: ${candidato.telefono} </p>
-                                <p> Especialidad: ${candidato.especialidad} </p>
-                            </article>`;
-            $porEspecialidad.appendChild(divi);
-            showModalBusqueda("Busqueda Impresa en Web"); // agregar icono modal
+    //controla que haya candidatos con esa especialidad
+    $carpeta.some(cand => cand.especialidad.includes('Fullstack'))==false
+    ?showModalBusqueda('"NO" hay candidatos con esa especialidad') // agregar icono al modal
+    :imprimirMultiple($filtroEspecialidad);
+    
     }
-                    
-                    
-                    
-
+    catch{}                                  
 }    
+
 
 /* ************************************************
  ***********  Salón de Eventos *******************
