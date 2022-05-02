@@ -8320,7 +8320,7 @@ fieldset:disabled .btn {
   margin-bottom: 0.25rem !important;
 }
 
-.my-2 {
+.my-2, .form_edit2 {
   margin-top: 0.5rem !important;
   margin-bottom: 0.5rem !important;
 }
@@ -8469,7 +8469,7 @@ fieldset:disabled .btn {
   padding: 0.5rem !important;
 }
 
-.p-3 {
+.p-3, .form_edit2 {
   padding: 1rem !important;
 }
 
@@ -11975,7 +11975,7 @@ de redes sociales*/
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-.glass-greenty-card {
+.glass-greenty-card, .form_edit2 {
   background-color: rgba(179, 255, 171, 0.25);
   -webkit-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
           box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -12012,6 +12012,13 @@ body {
   max-width: 23rem;
   width: 100%;
   height: 46rem;
+}
+
+.form_edit2 {
+  text-align: left;
+  max-width: 23rem;
+  width: 100%;
+  height: 100%;
 }
 
 /* ************************************ */
