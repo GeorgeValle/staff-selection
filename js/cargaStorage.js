@@ -15,20 +15,6 @@ class Candidato{
         this.especialidad = especialidad;
         this.ID = ID;
     }
-    // muestra todas la propiedades de un objeto candidato (pero no se porque no ejecuta si la invoco)
-    mostrarPropiedades() {
-        `
-                            <article class="col card-text found glass-greenty-card p-3 mb-3 mt-2" style="width:30rem">
-                                    <h3>Candidato: ${this.nombre}</h3>
-                                    <p> DNI: ${this.DNI} </p>
-                                    <p> Dirección: ${this.direccion} </p>
-                                    <p> Telefono: ${this.telefono} </p>
-                                    <p> Especialidad: ${this.especialidad} </p>
-                                </article>
-                                    `;
-    }
-
-    
     
 
 }
@@ -69,26 +55,22 @@ function enviarFormulario(e){
         
         
         //optimizado
-        let $NID = localStorage.getItem('numeroID')||'0';
+        let $numeroID = JSON.parse(localStorage.getItem('numeroID'))||0;
         //lo que estaba antes y fue optimizado
         // $NID==null 
         // ?$numeroID=0
-        // :$numeroID=JSON.parse($NID);
-
-        //optimizado
-        $numeroID=JSON.parse($NID)
+        // :$numeroID=JSON.parse($NID);       
         
         let $ID = $numeroID;
 
-
         let candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono, $especialidad, $ID );
-        let $carpeta;
+        
         //optimisado
-        let carpeta = localStorage.getItem('carpeta')|| '[]';
+        let $carpeta = JSON.parse(localStorage.getItem('carpeta'))||[];
+        
         // carpeta==null||carpeta==""
         // ?$carpeta = new Array()
         // :$carpeta = JSON.parse(carpeta);
-        $carpeta = JSON.parse(carpeta);
 
         $carpeta.push(candidato1);
 

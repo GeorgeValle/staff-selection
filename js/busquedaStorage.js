@@ -36,8 +36,9 @@ function closeModal() {
     };
 }
 
+//elimina el listado de candiadatos impreso antes que cargue el nuevo.
 function removeSearch() {
-    //elimina el listado de candiadatos impreso antes que cargue el nuevo.
+    
     let $removeNodo = document.getElementsByClassName("remove-search");
     for(i=0;i<$removeNodo.length;i++){
         $removeNodo[i].remove();
@@ -61,10 +62,7 @@ function imprimirBusqueda(candidato){
                         </article>`;
                     $porNombre.appendChild(divi);
                     showModalBusqueda("Candidato Impreso en Web"); // agregar icono al modal
-                    // limpia el input de busqueda
                     
-                    
-                    // candidato.mostrarPropiedades();
 }
 
 //imprime los candiadtos por especialidad
@@ -89,19 +87,18 @@ for(let i = 0; i < $filtroEspecialidad.length; i++) {
 function buscarXNombre(e){
     e.preventDefault();
     
-    let $carpeta;
     let formulario = e.target,
     $nombre = formulario.children[1].value;
     document.getElementById('xNombre').reset();
-    //optimisado
-    let carpeta = localStorage.getItem('carpeta')
-    ||showModalBusqueda('No hay candidatos cargados');
+    
     //como estaba antes
     //if(carpeta==null||carpeta=="") alert('No hay candidatos cargados')
         
-    try {
-    $carpeta = JSON.parse(carpeta);
-        
+    
+     //optimisado, busca los candidatos del localStorage  
+    let $carpeta = JSON.parse(localStorage.getItem('carpeta'))
+    ||showModalBusqueda('No hay candidatos cargados');
+    try {    
         //trae al objeto candidato de array
         let candidato = $carpeta.find( cand => cand.nombre === $nombre.toLowerCase());
 
@@ -128,14 +125,17 @@ function buscarXDNI(e){
     let formulario = e.target,
     $DNI = parseInt(formulario.children[1].value);
     document.getElementById('xDNI').reset();
-    let $carpeta;
+    //optimizado, busca los candidatos del localStorage
+    let $carpeta = JSON.parse(localStorage.getItem('carpeta'))
+    ||showModalBusqueda('No hay candidatos cargados');
     
-    let carpeta = localStorage.getItem('carpeta')
+    //*****antes de la optimización
+    //let carpeta = localStorage.getItem('carpeta')
     // carpeta==null||carpeta==""
-    ||showModalBusqueda('No hay candidatos cargados')//alert('No hay candidatos cargados')// 
+    //$carpeta = JSON.parse(carpeta);
+    
         try{
-            $carpeta = JSON.parse(carpeta);
-                
+            
             //antes del optimizado           
             // if($carpeta.some( cand => parseInt(cand.DNI) != $DNI)){ 
             // showModalBusqueda('No se encontró un candidato'); //alert("No se encontró un candidato"); 
@@ -157,11 +157,14 @@ function buscarXDNI(e){
 
 // funcion que busca por especialidad frontend
 function buscarXFront(){
-    let $carpeta;
-    let carpeta = localStorage.getItem('carpeta')
+    //optimisado
+    let $carpeta=JSON.parse(localStorage.getItem('carpeta'))
     ||showModalBusqueda('No hay candidatos cargados');
+
     try{
-    $carpeta = JSON.parse(carpeta);
+        // asi estaba antes del optimisado
+        // let carpeta = localStorage.getItem('carpeta')
+        // $carpeta = JSON.parse(carpeta);
 
     /* se fitran los candidatos con la especialidad escrita creando un nuevo array */       
     const $filtroEspecialidad = $carpeta.filter(cand => cand.especialidad.includes('Frontend'));
@@ -195,12 +198,13 @@ function buscarXFront(){
 }
 
 function buscarXBack(){
-    let $carpeta;
-    let carpeta = localStorage.getItem('carpeta')||
-    showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
+    let $carpeta= JSON.parse(localStorage.getItem('carpeta'))
+    ||showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
     
     try{
-        $carpeta = JSON.parse(carpeta);
+        // antes de optimisar
+        // let carpeta = localStorage.getItem('carpeta')
+        // $carpeta = JSON.parse(carpeta);
 
 
         //elimina el listado de la busqueda anterior
@@ -218,22 +222,23 @@ function buscarXBack(){
 }
 
 function buscarXFull(){
-    let $carpeta;
-    let carpeta = localStorage.getItem('carpeta')||
-    showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
+    let $carpeta= JSON.parse(localStorage.getItem('carpeta'))
+    ||showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
     try{
-    $carpeta = JSON.parse(carpeta);
+        // antes de optimisar
+        // let carpeta = localStorage.getItem('carpeta')
+        // $carpeta = JSON.parse(carpeta);
 
-    /* se fitran los candidatos con la especialidad escrita creando un nuevo array */   
-    const $filtroEspecialidad = $carpeta.filter(cand => cand.especialidad.includes('Fullstack'));
+        /* se fitran los candidatos con la especialidad escrita creando un nuevo array */   
+        const $filtroEspecialidad = $carpeta.filter(cand => cand.especialidad.includes('Fullstack'));
 
-    //elimina el listado de la busqueda anterior
-    removeSearch();
+        //elimina el listado de la busqueda anterior
+        removeSearch();
 
-    //controla que haya candidatos con esa especialidad
-    $carpeta.some(cand => cand.especialidad.includes('Fullstack'))==false
-    ?showModalBusqueda('"NO" hay candidatos con esa especialidad') // agregar icono al modal
-    :imprimirMultiple($filtroEspecialidad);
+        //controla que haya candidatos con esa especialidad
+        $carpeta.some(cand => cand.especialidad.includes('Fullstack'))==false
+        ?showModalBusqueda('"NO" hay candidatos con esa especialidad') // agregar icono al modal
+        :imprimirMultiple($filtroEspecialidad);
     
     }
     catch{}                                  
