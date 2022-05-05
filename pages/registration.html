@@ -5,10 +5,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>P&#225;gina de Registraci&#243;n</title>
+
+    <link href="../css/styles.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+
     <script src="../libs/luxon/luxon.js" defer></script>
-    <script src="../js/login.js" defer ></script>
+    <script src="../js/registro.js" defer ></script>
 </head>
 <body>
-    
+    <main class="text-center">
+        <aside id="modal" class="modal modal_edit " tabindex="-1">
+            <article class="modal-dialog">
+                <div class="modal-content glass-greenty-card">
+                    <div class="modal-header">
+                        <button id="closeModalRegistro" type="button" class="btn-close  p-2 glass-snow"
+                            data-bs-dismiss="modal"></button>
+
+                    </div>
+                    <div id="father3" class="modal-body">
+
+                        <h5 class=" text-primary text-center p-3 d-inline-block glass-snow "> ¡Bienvenido! </h5>
+                        <!-- <span class="material-icons md-24 green600">
+                        person_add
+                    </span> -->
+                    </div>
+                </div>
+            </article>
+        </aside>
+
+        <h1 class=" text-primary mt-5 p-3 d-inline-block glass-snow">Registraci&#243;n</h1>
+        <section class="container-fluid glass-celesty-card section_edit">
+            <section class="row overflow_x ">
+                <article class="col mb-4 d-flex justify-content-center">
+                    <form id="registro" class=" form form_edit2  ">
+                        <label class="label">Email de usuario</label>
+                        <input id="userEmail" class="form-control form-control-sm my-2" type="email" placeholder="Ingrese su E-mail"
+                            required>
+
+                        <label class="label">Usuario</label>
+                        <input id="userName" class="form-control form-control-sm my-2" type="text" placeholder="Ingrese nombre de usuario"
+                            required>
+
+                        <label class="label">Contraseña</label>
+                        <input id="pass" class="form-control form-control-sm my-2" name="password"  type="password" placeholder="Ingrese su contraseña"
+                            aria-label=".form-control-sm example"  minlength="6" maxlength="16" required>
+
+                            <label class="label">Validar Contraseña</label>
+                            <input id="valPass" class="form-control form-control-sm my-2" name="validarPassword"  type="password" placeholder="Repite tu contraseña ingresada"
+                                aria-label=".form-control-sm example"  minlength="6" maxlength="16" required>
+                    
+
+                        <label class="label">*Opcional - Contraseña de reclutador</label>
+                        <input id="keyAdmin" class="form-control form-control-sm my-2" type="password" placeholder="Ingrese contraseña"
+                            aria-label=".form-control-sm example" minlength="6" maxlength="16">
+                    
+                        
+
+                            <label class="label">Telefono celular</label>
+                        <input id="number" class="form-control form-control-sm my-2" type="number" placeholder="Ingrese su E-mail"
+                            required>
+
+                            <input class="mt-2 mb-4 btn btn-success" type="submit" value="Registrar" />
+
+
+                        <a href="registration.html" class="nav-link px-2 text-primary link-secondary active">Si no se registr&#243; <u>Pulse aqu&#237;</u></a>
+                        <a href="../index.html" class="nav-link px-2 text-primary link-secondary active">Regresar al Inicio</a>
+                    </form>
+                </article>
+            </section>
+        </section>
+    </main>
 </body>
+
 </html>

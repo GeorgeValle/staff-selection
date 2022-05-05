@@ -8,21 +8,21 @@ class Usuario {
     constructor(){
     this.email= $email,
     this.userName= $userName,
-    _password= setPassword(password),
+    this._password= $password,
     //this.since=,
     this.recluiter=verification($masterKey);
     this.userID=$userID;
     
     }
 
-    setPassword(password) {
-        this._password=password;
-    }
+    // setPassword(password) {
+    //     this._password=password;
+    // }
 
-    get password(){
-        return this._password;
+    // get password(){
+    //     return this._password;
 
-    }
+    // }
 
     verification($masterKey){
         const MASTER_KEY = "IXZpZGFfbnVldmFf";
@@ -34,59 +34,36 @@ class Usuario {
 
 }
 
+
+
+
+function showModalRegistro(texto){
+    const $container = document.getElementById("father3");
+    let div = document.createElement("div");
+    div.innerHTML = `<h5 class=" text-primary remove-text text-center p-3 d-inline-block glass-snow ">${texto}</h5>`;
+    $container.appendChild(div);
+    document.getElementById('modal').style.display = 'block';
+    setTimeout(closeModalRegistro, 2500);
+}
+
+function closeModalRegistro(){
+    document.getElementById('modal').style.display = 'none';
+}
+
 function bienvenido($user){
 
     localStorage.setItem('user', $user);
-    let $state = true;
-    localStorage.setItem('state', $state);
-    showModalBusqueda('bienvenido');
-    $user.recluiter===true
-    ?document.getElementById('navbar-recluiter').style.display = 'block'
-    :document.getElementById('navbar-user').style.display = 'block';
-    setTimeout(window.location = '../index.html', 2500);
-    
-
-
-
-
-
+    let $cokieB = true;
+    localStorage.setItem('cokieB', $cokieB);
+    showModalRegistro('bienvenido');
+    // let {recluiter} = $user;
+    // recluiter===true
+    // ?document.getElementById('navbar-recluiter').style.display = 'block'
+    // :document.getElementById('navbar-user').style.display = 'block';
+    setTimeout(()=>{window.location = '../index.html'}, 2500);
 }
 
-const $btRegistro = document.getElementById('registro');
-$btRegistro.addEventListener('submit', registrarse);
 
-function registrarse(e){
-    e.preventDefault();
-    let formulario = e.target,
-        $email = formulario.children[1].value.toLowerCase(),
-        $userName = formulario.children[3].value,
-        $pass = formulario.children[5].value,
-        $masterKey = formulario.children[7].value;
-
-
-        //const $since=DateTime#local;
-
-        let $numeroUser = JSON.parse(localStorage.getItem('numeroUser'))||0;
-        let $userID = $numeroUser;
-
-
-
-        let $perfiles=JSON.parse(localStorage.getItem('perfiles'))||[];
-
-        //,$since
-        const usuario= new Usuario($email,$userName,$pass,$masterKey,$userID);
-
-        $perfiles.push(usuario);
-
-        $numeroUser++;
-        localStorage.setItem('numeroUser', $numeroUser);
-        const $perfilesJSON = JSON.stringify($perfiles);
-        localStorage.setItem('perfiles', $perfilesJSON);
-        document.getElementById('registro').reset();
-        showModalRegistro();
-        //le agregué setTimeout para que fuese un alert mas que modal
-        setTimeout(closeModalRegistro, 2500);
-}
 
 const $btnLogin = document.getElementById('login');
 $btnLogin.addEventListener('submit', logearse);
@@ -95,6 +72,7 @@ function logearse(e) {
     let formulario = e.target,
     $email = formulario.children[1].value.toLowerCase(),
     $password = formulario.children[3].value;
+
     document.getElementById('login').reset();
 
     let $perfiles = JSON.parse(localStorage.getItem('perfiles'))
@@ -103,7 +81,7 @@ function logearse(e) {
     let usuario = $perfiles.find( user => user.email === $email)
     ||showModalRegistro("El E-mail no corresponde a un usuario");
 
-    $carpeta.some( user => user.password() == $password )==true 
+    $carpeta.some( user => user._password() == $password )==true 
         ?showModalBusqueda('Contraseña incorrecta') //agregar icono
         :bienvenido(usuario);
 }
