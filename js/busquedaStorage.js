@@ -47,18 +47,22 @@ function removeSearch() {
 
 
 function imprimirBusqueda(candidato){
+
+    let {nombre,edad,DNI,direccion,telefono,especialidad}=candidato;
     const $porNombre = document.getElementById("father1");
         
                         
     let divi = document.createElement("divi");
     // divi.innerHTML = candidato.mostrarPropiedades();
     divi.innerHTML =   `<article class="col card-text found remove-search glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
-                            <h3>Candidato: ${candidato.nombre}</h3>
-                            <p> Edad: ${candidato.edad} </p>
-                            <p> DNI: ${candidato.DNI} </p>
-                            <p> Dirección: ${candidato.direccion} </p>
-                            <p> Telefono: ${candidato.telefono} </p>
-                            <p> Especialidad: ${candidato.especialidad} </p>
+                            <h3>Candidato: ${nombre}</h3>
+                            <p> Edad: ${edad} </p>
+                            <p> DNI: ${DNI} </p>
+                            <p> Dirección: ${direccion} </p>
+                            <p> Provincia: ${provincia}</p>
+                            <p> Ciudad: ${ciudad}</p>
+                            <p> Telefono: ${telefono} </p>
+                            <p> Especialidad: ${especialidad} </p>
                         </article>`;
                     $porNombre.appendChild(divi);
                     showModalBusqueda("Candidato Impreso en Web"); // agregar icono al modal
@@ -68,16 +72,19 @@ function imprimirBusqueda(candidato){
 //imprime los candiadtos por especialidad
 function imprimirMultiple($filtroEspecialidad){
 for(let i = 0; i < $filtroEspecialidad.length; i++) {
-    let candidato = $filtroEspecialidad[i];
+    let {nombre,edad,DNI,direccion,provincia,ciudad,telefono,especialidad} 
+    = $filtroEspecialidad[i];
     const $porEspecialidad = document.getElementById("father1");
     let divi = document.createElement("divi");
     divi.innerHTML = `<article class="col card-text remove-search found glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
-                        <h3>Candidato: ${candidato.nombre}</h3>
-                        <p> Edad: ${candidato.edad} </p>
-                        <p> DNI: ${candidato.DNI} </p>
-                        <p> Dirección: ${candidato.direccion} </p>
-                        <p> Telefono: ${candidato.telefono} </p>
-                        <p> Especialidad: ${candidato.especialidad} </p>
+                        <h3>Candidato: ${nombre}</h3>
+                        <p> Edad: ${edad} </p>
+                        <p> DNI: ${DNI} </p>
+                        <p> Dirección: ${direccion} </p>
+                        <p> Provincia: ${provincia}</p>
+                        <p> Ciudad: ${ciudad}</p>
+                        <p> Telefono: ${telefono} </p>
+                        <p> Especialidad: ${especialidad} </p>
                     </article>`;
     $porEspecialidad.appendChild(divi);
     showModalBusqueda("Busqueda Impresa en Web"); // agregar icono al modal
@@ -91,9 +98,7 @@ function buscarXNombre(e){
     $nombre = formulario.children[1].value;
     document.getElementById('xNombre').reset();
     
-    //como estaba antes
-    //if(carpeta==null||carpeta=="") alert('No hay candidatos cargados')
-        
+    
     
      //optimisado, busca los candidatos del localStorage  
     let $carpeta = JSON.parse(localStorage.getItem('carpeta'))
@@ -129,18 +134,8 @@ function buscarXDNI(e){
     let $carpeta = JSON.parse(localStorage.getItem('carpeta'))
     ||showModalBusqueda('No hay candidatos cargados');
     
-    //*****antes de la optimización
-    //let carpeta = localStorage.getItem('carpeta')
-    // carpeta==null||carpeta==""
-    //$carpeta = JSON.parse(carpeta);
-    
+
         try{
-            
-            //antes del optimizado           
-            // if($carpeta.some( cand => parseInt(cand.DNI) != $DNI)){ 
-            // showModalBusqueda('No se encontró un candidato'); //alert("No se encontró un candidato"); 
-            // document.getElementById('xDNI').reset();
-            // }
 
             //elimina el listado de la busqueda anterior
             removeSearch();
@@ -162,10 +157,7 @@ function buscarXFront(){
     ||showModalBusqueda('No hay candidatos cargados');
 
     try{
-        // asi estaba antes del optimisado
-        // let carpeta = localStorage.getItem('carpeta')
-        // $carpeta = JSON.parse(carpeta);
-
+        
     /* se fitran los candidatos con la especialidad escrita creando un nuevo array */       
     const $filtroEspecialidad = $carpeta.filter(cand => cand.especialidad.includes('Frontend'));
     //quita la busqueda anterior
@@ -178,23 +170,7 @@ function buscarXFront(){
     }
     catch{};
         
-        //*********************asi estaba antes del optimisado:
-        // /* Te imprime en el html todos los candidatos con esa especialidad  */
-        // for(let i = 0; i < $filtroEspecialidad.length; i++) {
-        //     let candidato = $filtroEspecialidad[i];
-        //     const $porEspecialidad = document.getElementById("father1");
-        //     let divi = document.createElement("divi");
-        //     divi.innerHTML = `<article class="col card-text remove-search found glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
-        //                         <h3>Candidato: ${candidato.nombre}</h3>
-        //                         <p> Edad: ${candidato.edad} </p>
-        //                         <p> DNI: ${candidato.DNI} </p>
-        //                         <p> Dirección: ${candidato.direccion} </p>
-        //                         <p> Telefono: ${candidato.telefono} </p>
-        //                         <p> Especialidad: ${candidato.especialidad} </p>
-        //                     </article>`;
-        //     $porEspecialidad.appendChild(divi);
-        //     showModalBusqueda("Busqueda Impresa en Web"); // agregar icono al modal
-        //                 }
+        
 }
 
 function buscarXBack(){
@@ -202,10 +178,7 @@ function buscarXBack(){
     ||showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
     
     try{
-        // antes de optimisar
-        // let carpeta = localStorage.getItem('carpeta')
-        // $carpeta = JSON.parse(carpeta);
-
+        
 
         //elimina el listado de la busqueda anterior
         /* se fitran los candidatos con la especialidad escrita creando un nuevo array */
@@ -225,10 +198,7 @@ function buscarXFull(){
     let $carpeta= JSON.parse(localStorage.getItem('carpeta'))
     ||showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
     try{
-        // antes de optimisar
-        // let carpeta = localStorage.getItem('carpeta')
-        // $carpeta = JSON.parse(carpeta);
-
+    
         /* se fitran los candidatos con la especialidad escrita creando un nuevo array */   
         const $filtroEspecialidad = $carpeta.filter(cand => cand.especialidad.includes('Fullstack'));
 
