@@ -5,12 +5,12 @@
 // y crear la barra para reclutadores o usuarios normales
 
 class Usuario {
-    constructor(){
+    constructor($email,$userName,$pass,$masterKey,$userID){
     this.email= $email,
     this.userName= $userName,
-    this._password= $password,
+    this.pass= $pass,
     //this.since=,
-    this.recluiter=verification($masterKey);
+    this.recluiter=$masterKey,
     this.userID=$userID;
     
     }
@@ -81,7 +81,7 @@ function logearse(e) {
     let usuario = $perfiles.find( user => user.email === $email)
     ||showModalRegistro("El E-mail no corresponde a un usuario");
 
-    $carpeta.some( user => user._password() == $password )==true 
+    $carpeta.some( user => user.pass == $password )==true 
         ?showModalBusqueda('Contraseña incorrecta') //agregar icono
         :bienvenido(usuario);
 }

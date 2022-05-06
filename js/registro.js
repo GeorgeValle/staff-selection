@@ -1,11 +1,14 @@
+
+
 class Usuario {
-    constructor($email,$userName,$password,$masterKey,$userID){
+    constructor($email,$userName,$pass,$since,$masterKey,$userID,$celular){
     this.email= $email,
     this.userName= $userName,
-    this.password= $password,
-    //this.since=,
-    this.recluiter=verification($masterKey),
-    this.userID=$userID;
+    this.pass=$pass,
+    this.since=$since,
+    this.recluiter=$masterKey,
+    this.userID=$userID,
+    this.celular= $celular;
     
     }
 
@@ -18,16 +21,11 @@ class Usuario {
 
     // }
 
-    verification($masterKey){
-        const MASTER_KEY = "IXZpZGFfbnVldmFf";
-        
-        $masterKey==MASTER_KEY
-        ? true
-        : false;
-    }
+    
 
 }
 
+const DateTime = luxon.DateTime;
 
 
 function showModalRegistro(texto){
@@ -37,6 +35,14 @@ function showModalRegistro(texto){
     $container.appendChild(div);
     document.getElementById('modal').style.display = 'block';
     setTimeout(closeModalRegistro, 2500);
+}
+
+function verification($masterKey){
+    const MASTER_KEY = "IXZpZGFfbnVldmFf";
+    
+    MASTER_KEY==$masterKey
+    ? $masterKey=true
+    : $masterKey=false;
 }
 
 function closeModalRegistro(){
@@ -49,16 +55,17 @@ $btRegistro.addEventListener('submit', registrarse);
 function registrarse(e){
     e.preventDefault();
     let formulario = e.target,
-        $email = formulario.children[2].value,
-        $userName = formulario.children[4].value,
-        // password = document.querySelector("#pass"),
-        // password.setAttribute("text", type),
-        $password = formulario.children[6].value,
-        $masterKey = formulario.children[8].value,
-        $celular = formulario.children[10].value;
+        $email = formulario.children[1].value,
+        $userName = formulario.children[3].value,
+        $pass = formulario.children[5].value, 
+        $Key = formulario.children[7].value,
+        $celular = formulario.children[9].value;
 
 
-        //const $since=DateTime#local;
+        
+        //fecha de hoy con librería Luxon
+        const now = DateTime.now();
+        const $since = now.toISOString;
 
         let $numeroUser = JSON.parse(localStorage.getItem('numeroUser'))||0;
         let $userID = $numeroUser;
@@ -66,9 +73,9 @@ function registrarse(e){
 
 
         let $perfiles=JSON.parse(localStorage.getItem('perfiles'))||[];
-
+        let $masterKey = verification($Key);
         //,$since
-        const usuario= new Usuario($email,$userName,$password,$masterKey,$userID,$celular);
+        const usuario= new Usuario($email,$userName,$pass,$since,$masterKey,$userID,$celular);
 
         $perfiles.push(usuario);
 
@@ -77,9 +84,11 @@ function registrarse(e){
         const $perfilesJSON = JSON.stringify($perfiles);
         localStorage.setItem('perfiles', $perfilesJSON);
         document.getElementById('registro').reset();
-        showModalRegistro();
-        //le agregué setTimeout para que fuese un alert mas que modal
-        setTimeout(closeModalRegistro, 2500);
+        showModalRegistro(`<span class="material-icons text-success">
+        check_circle_outline
+        </span> Registrado con exito`);
+        
+        
     
 }
 
