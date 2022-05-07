@@ -6,7 +6,7 @@ class Usuario {
     this.userName= $userName,
     this.pass=$pass,
     this.since=$since,
-    this.recluiter=$masterKey,
+    this.recluiter=new Boolean($masterKey),
     this.userID=$userID,
     this.celular= $celular;
     
@@ -37,12 +37,13 @@ function showModalRegistro(texto){
     setTimeout(closeModalRegistro, 2500);
 }
 
-function verification($masterKey){
+function verification($key){
     const MASTER_KEY = "IXZpZGFfbnVldmFf";
     
-    MASTER_KEY==$masterKey
-    ? $masterKey=true
-    : $masterKey=false;
+    MASTER_KEY==$key
+    ? $key=new Boolean(true)
+    : $key=new Boolean(false);
+    return $key;
 }
 
 function closeModalRegistro(){
@@ -58,7 +59,7 @@ function registrarse(e){
         $email = formulario.children[1].value,
         $userName = formulario.children[3].value,
         $pass = formulario.children[5].value, 
-        $Key = formulario.children[7].value,
+        $key = formulario.children[7].value,
         $celular = formulario.children[9].value;
 
 
@@ -73,7 +74,7 @@ function registrarse(e){
 
 
         let $perfiles=JSON.parse(localStorage.getItem('perfiles'))||[];
-        let $masterKey = verification($Key);
+        let $masterKey = new Boolean(verification($key));
         //,$since
         const usuario= new Usuario($email,$userName,$pass,$since,$masterKey,$userID,$celular);
 
