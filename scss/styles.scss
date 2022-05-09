@@ -15,3 +15,50 @@ body{
 @import "_enrolamiento";
 
 @import "_busqueda";
+
+
+
+.menu{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+    padding: 0.5rem;
+    margin-left: 0,5rem;
+
+
+        // .dropdown{
+        //     position:fixed;
+        //     z-index: index 2;
+        // }
+        a.active_label, a:hover{
+        @include hover-orange;
+        }                    
+}
+
+
+@media(max-width: 768px){ /*medida de tablet */
+    
+
+    
+
+    /* agrea una capa de fondo trasparente a los 
+    links del menu desplegable para tener un poco
+    mas de contraste en dispositivos mobiles
+    and tablests */
+    // main{
+    //     z-index:-2;
+    // }
+    // .dropdown{
+    //     @include glass-greenty-card;
+    //     z-index:1;
+    // }
+    // .nav-item{
+    //     @include glass-snow;
+    // }
+
+    
+
+
+
+} 
