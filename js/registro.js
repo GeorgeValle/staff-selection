@@ -1,5 +1,6 @@
 
-
+//const { DateTime } =require("luxon");
+//import { DateTime } from "luxon";
 class Usuario {
     constructor($email,$userName,$pass,$since,$masterKey,$userID,$celular){
     this.email= $email,
@@ -40,19 +41,32 @@ function showModalRegistro(texto){
     setTimeout(closeModalRegistro, 2500);
 }
 
-function verification($key){
+// const miInit = {method: 'GET', headers:{'Content-Type':'aplication/json'}, 
+// mode:'cords',
+// cache: 'default'
+// };
+
+async function  verification($key){
     //const MASTER_KEY = "IXZpZGFfbnVldmFf";
-fetch('../data/masterKey.json')
-    .then(resp => resp.json())
-    .then(masterKey =>{
-        const MASTER_KEY=masterKey.recruitKey;
+// let myRequest = new Request()   
+await fetch('../pages/masterKey')
+    .then(resp => resp.ok ?resp.text() :Promise.reject(resp))
+    .then(data =>{
+        const MASTER_KEY = data.recruitKey;
         let keyValor;
 
         MASTER_KEY===$key
-        ? keyValor=new Boolean(true)
-        : keyValor=new Boolean(false);
-        return keyValor;
+        ? keyValor=1
+        : keyValor=0;
+        return keyValor
+
+        
+
     })
+    .catch((err) => {
+        console.log("catch",err);
+    })
+    
 }
 
 function closeModalRegistro(){
@@ -74,8 +88,8 @@ function registrarse(e){
 
         
         //fecha de hoy con librería Luxon
-        const now = DateTime.now();
-        const $since = now.toISOString;
+        const $since = DateTime.now().toFormat('MM-dd-yyyy');
+        
 
         let $numeroUser = JSON.parse(localStorage.getItem('numeroUser'))||0;
         let $userID = $numeroUser;
@@ -84,7 +98,7 @@ function registrarse(e){
 
         let $perfiles=JSON.parse(localStorage.getItem('perfiles'))||[];
         let $masterKey = new Boolean(verification($key));
-        //,$since
+        
         const usuario= new Usuario($email,$userName,$pass,$since,$masterKey,$userID,$celular);
 
         $perfiles.push(usuario);
