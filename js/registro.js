@@ -25,6 +25,9 @@ class Usuario {
 
 }
 
+const $ICON_CHECK=`<span class="material-icons text-success">
+check_circle_outline</span>`;
+
 const DateTime = luxon.DateTime;
 
 
@@ -38,12 +41,18 @@ function showModalRegistro(texto){
 }
 
 function verification($key){
-    const MASTER_KEY = "IXZpZGFfbnVldmFf";
-    
-    MASTER_KEY==$key
-    ? $key=new Boolean(true)
-    : $key=new Boolean(false);
-    return $key;
+    //const MASTER_KEY = "IXZpZGFfbnVldmFf";
+fetch('../data/masterKey.json')
+    .then(resp => resp.json())
+    .then(masterKey =>{
+        const MASTER_KEY=masterKey.recruitKey;
+        let keyValor;
+
+        MASTER_KEY===$key
+        ? keyValor=new Boolean(true)
+        : keyValor=new Boolean(false);
+        return keyValor;
+    })
 }
 
 function closeModalRegistro(){
@@ -85,9 +94,7 @@ function registrarse(e){
         const $perfilesJSON = JSON.stringify($perfiles);
         localStorage.setItem('perfiles', $perfilesJSON);
         document.getElementById('registro').reset();
-        showModalRegistro(`<span class="material-icons text-success">
-        check_circle_outline
-        </span> Registrado con exito`);
+        showModalRegistro(` ${$ICON_CHECK} Registrado con exito`);
         
         
     
