@@ -1,0 +1,22 @@
+{
+  "name": "staff-selection",
+  "version": "1.0.0",
+  "description": "recruitment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeorgeValle/staff-selection.git"
+  },
+  "author": "GeorgeValle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeorgeValle/staff-selection/issues"
+  },
+  "homepage": "https://github.com/GeorgeValle/staff-selection#readme",
+  "dependencies": {
+    "luxon": "^2.4.0"
+  }
+}
