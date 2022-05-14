@@ -7,7 +7,7 @@ class Usuario {
     this.userName= $userName,
     this.pass=$pass,
     this.since=$since,
-    this.recluiter=$masterKey,
+    this.recluiter=($masterKey),
     this.userID=$userID,
     this.celular= $celular;
     
@@ -59,18 +59,13 @@ await fetch('../js/masterKey.json')
     .then(data =>{
         const MASTER_KEY = data.recruitKey;
         console.log(data);
-        let keyValor;
+        let $keyValor;
         console.log(MASTER_KEY);
         console.log($key);
         $key===MASTER_KEY
-        ? keyValor=1
-        : keyValor=0;
-        console.log(keyValor);
-        return keyValor;
-        
-        
-
-        
+        ? localStorage.setItem('verification', JSON.stringify($keyValor=1))
+        : localStorage.setItem('verification', JSON.stringify($keyValor=0));
+        console.log(keyValor);    
 
     })
     .catch((err) => {
@@ -109,7 +104,9 @@ function registrarse(e){
         //let $masterKey = new Boolean();
         let $perfiles=JSON.parse(localStorage.getItem('perfiles'))||[];
         //verification($key);
-        let  $masterKey = verification($key);
+        verification($key);
+        let  $masterKey = new Boolean(JSON.parse(localStorage.getItem('verification'))||0)
+        localStorage.removeItem('verification');
 
         console.log($masterKey)
         const usuario= new Usuario($email,$userName,$pass,$since,$masterKey,$userID,$celular);
