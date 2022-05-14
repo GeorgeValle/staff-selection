@@ -7,7 +7,7 @@ class Usuario {
     this.userName= $userName,
     this.pass=$pass,
     this.since=$since,
-    this.recluiter=new Boolean($masterKey),
+    this.recluiter=$masterKey,
     this.userID=$userID,
     this.celular= $celular;
     
@@ -45,26 +45,37 @@ function showModalRegistro(texto){
 // mode:'cords',
 // cache: 'default'
 // };
+let keyValor;
+function unokeyValor(numero){
+    return numero;
+}
 
 async function  verification($key){
     //const MASTER_KEY = "IXZpZGFfbnVldmFf";
-// let myRequest = new Request()   
-await fetch('../pages/masterKey')
-    .then(resp => resp.ok ?resp.text() :Promise.reject(resp))
+// let myRequest = new Request(""./data_class.json",myInit);   
+await fetch('../js/masterKey.json')
+    //.then(resp => resp.ok ?resp.json() :Promise.reject(resp))
+    .then(resp => resp.json())
     .then(data =>{
         const MASTER_KEY = data.recruitKey;
+        console.log(data);
         let keyValor;
-
-        MASTER_KEY===$key
+        console.log(MASTER_KEY);
+        console.log($key);
+        $key===MASTER_KEY
         ? keyValor=1
         : keyValor=0;
-        return keyValor
+        console.log(keyValor);
+        return keyValor;
+        
+        
 
         
 
     })
     .catch((err) => {
-        console.log("catch",err);
+        console.log("entro en catch ",err);
+
     })
     
 }
@@ -95,10 +106,12 @@ function registrarse(e){
         let $userID = $numeroUser;
 
 
-
+        //let $masterKey = new Boolean();
         let $perfiles=JSON.parse(localStorage.getItem('perfiles'))||[];
-        let $masterKey = new Boolean(verification($key));
-        
+        //verification($key);
+        let  $masterKey = verification($key);
+
+        console.log($masterKey)
         const usuario= new Usuario($email,$userName,$pass,$since,$masterKey,$userID,$celular);
 
         $perfiles.push(usuario);
