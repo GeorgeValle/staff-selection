@@ -5,13 +5,14 @@
 // y crear la barra para reclutadores o usuarios normales
 
 class Usuario {
-    constructor($email,$userName,$pass,$masterKey,$userID){
+    constructor($email,$userName,$pass,$since,$masterKey,$userID,$celular){
     this.email= $email,
     this.userName= $userName,
-    this.pass= $pass,
-    //this.since=,
+    this.pass=$pass,
+    this.since=$since,
     this.recluiter=$masterKey,
-    this.userID=$userID;
+    this.userID=$userID,
+    this.celular= $celular;
     
     }
 
@@ -24,17 +25,16 @@ class Usuario {
 
     // }
 
-    verification($masterKey){
-        const MASTER_KEY = "IXZpZGFfbnVldmFf";
-        
-        $masterKey==MASTER_KEY
-        ? true
-        : false;
-    }
 
 }
 
+const $welcome = `<span class="material-icons text-success">
+waving_hand
+</span>`;
 
+const $warning= `<span class="material-icons text-danger">
+                    warning_amber
+                </span>`;
 
 
 function showModalRegistro(texto){
@@ -53,14 +53,17 @@ function closeModalRegistro(){
 function bienvenido($user){
 
     localStorage.setItem('user', $user);
-    let $cokieB = true;
-    localStorage.setItem('cokieB', $cokieB);
-    showModalRegistro('bienvenido');
+    let $cookieB = new Boolean(true);
+    localStorage.setItem('cookieB', $cookieB);
+    showModalRegistro(`${$welcome}bienvenido`);
     // let {recluiter} = $user;
-    // recluiter===true
+    // recluiter==1
     // ?document.getElementById('navbar-recluiter').style.display = 'block'
     // :document.getElementById('navbar-user').style.display = 'block';
-    setTimeout(()=>{window.location = '../index.html'}, 2500);
+    function goIndex(){
+        window.location = '../index.html';
+    }
+    setTimeout(goIndex, 3000);
 }
 
 
@@ -76,14 +79,14 @@ function logearse(e) {
     document.getElementById('login').reset();
 
     let $perfiles = JSON.parse(localStorage.getItem('perfiles'))
-    ||showModalRegistro("No hay usuarios cargados");
+    ||showModalRegistro(`${$warning}No hay usuarios cargados`);
 
-    let usuario = $perfiles.find( user => user.email === $email)
-    ||showModalRegistro("El E-mail no corresponde a un usuario");
+    let $usuario = $perfiles.find( user => user.email === $email)
+    ||showModalRegistro(`${$warning}El E-mail no corresponde a un usuario`);
 
-    $carpeta.some( user => user.pass == $password )==true 
-        ?showModalBusqueda('Contraseña incorrecta') //agregar icono
-        :bienvenido(usuario);
+    $usuario.pass == $password  
+        ?showModalBusqueda(`${$warning}Contraseña incorrecta`) //agregar icono
+        :bienvenido($usuario);
 }
 
 

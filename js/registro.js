@@ -2,14 +2,14 @@
 //const { DateTime } =require("luxon");
 //import { DateTime } from "luxon";
 class Usuario {
-    constructor($email,$userName,$pass,$since,$masterKey,$userID,$celular){
-    this.email= $email,
-    this.userName= $userName,
+    constructor($email,$userName,$pass,$since,$recruit,$userID,$celular){
+    this.email=$email,
+    this.userName=$userName,
     this.pass=$pass,
     this.since=$since,
-    this.recluiter=($masterKey),
+    this.recruit=$recruit,
     this.userID=$userID,
-    this.celular= $celular;
+    this.celular=$celular;
     
     }
 
@@ -45,10 +45,8 @@ function showModalRegistro(texto){
 // mode:'cords',
 // cache: 'default'
 // };
-let keyValor;
-function unokeyValor(numero){
-    return numero;
-}
+
+
 
 async function  verification($key){
     //const MASTER_KEY = "IXZpZGFfbnVldmFf";
@@ -60,12 +58,12 @@ await fetch('../js/masterKey.json')
         const MASTER_KEY = data.recruitKey;
         console.log(data);
         let $keyValor;
-        console.log(MASTER_KEY);
-        console.log($key);
+        //console.log(MASTER_KEY);
+        //console.log($key);
         $key===MASTER_KEY
         ? localStorage.setItem('verification', JSON.stringify($keyValor=1))
         : localStorage.setItem('verification', JSON.stringify($keyValor=0));
-        console.log(keyValor);    
+        console.log($keyValor);    
 
     })
     .catch((err) => {
@@ -101,14 +99,16 @@ function registrarse(e){
         let $userID = $numeroUser;
 
 
-        //let $masterKey = new Boolean();
+        
         let $perfiles=JSON.parse(localStorage.getItem('perfiles'))||[];
-        //verification($key);
+        
         verification($key);
-        let  $masterKey = new Boolean(JSON.parse(localStorage.getItem('verification'))||0)
-        localStorage.removeItem('verification');
+        let  $keyJSON = localStorage.getItem('verification')||console.log("no se cargó");
+        let  $masterKey = parseInt($keyJSON);
+        
+        //localStorage.removeItem('verification');
 
-        console.log($masterKey)
+        console.log(`${$masterKey} esto cargó`);
         const usuario= new Usuario($email,$userName,$pass,$since,$masterKey,$userID,$celular);
 
         $perfiles.push(usuario);
