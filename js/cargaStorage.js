@@ -55,22 +55,15 @@ function enviarFormulario(e){
         
         
         //optimizado
-        let $numeroID = JSON.parse(localStorage.getItem('numeroID'))||0;
-        //lo que estaba antes y fue optimizado
-        // $NID==null 
-        // ?$numeroID=0
-        // :$numeroID=JSON.parse($NID);       
+        let $numeroID = JSON.parse(localStorage.getItem('numeroID'))||0;       
         
         let $ID = $numeroID;
 
         let candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono, $especialidad, $ID );
         
-        //optimisado
+        //optimizado
         let $carpeta = JSON.parse(localStorage.getItem('carpeta'))||[];
         
-        // carpeta==null||carpeta==""
-        // ?$carpeta = new Array()
-        // :$carpeta = JSON.parse(carpeta);
 
         $carpeta.push(candidato1);
 
