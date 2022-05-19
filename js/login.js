@@ -53,8 +53,8 @@ function closeModalRegistro(){
 function bienvenido($user){
 
     localStorage.setItem('user', $user);
-    let $cookieB = new Boolean(true);
-    localStorage.setItem('cookieB', $cookieB);
+    // let $cookieB = new Boolean(true);
+    // localStorage.setItem('cookieB', $cookieB);
     showModalRegistro(`${$welcome}bienvenido`);
     // let {recluiter} = $user;
     // recluiter==1
@@ -85,7 +85,7 @@ function logearse(e) {
     ||showModalRegistro(`${$warning}El E-mail no corresponde a un usuario`);
 
     $usuario.pass == $password  
-        ?showModalBusqueda(`${$warning}Contraseña incorrecta`) //agregar icono
+        ?showModalRegistro(`${$warning}Contraseña incorrecta`) //agregar icono
         :bienvenido($usuario);
 }
 
