@@ -1,4 +1,4 @@
-onload = ()=>{
+function controlFuntion(){
 
     //barra de menú que aparecerá cunado se esté deslogueado
     function menuLogout(){
