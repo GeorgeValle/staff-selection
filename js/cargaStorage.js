@@ -4,7 +4,7 @@ Sección carga de candidatos */
 
 
 class Candidato{
-    constructor(nombre, edad, DNI, provincia, ciudad, direccion, telefono, especialidad, ID){
+    constructor(nombre, edad, DNI, provincia, ciudad, direccion, telefono, especialidad,lenguaje, seniority, ID){
         this.nombre = nombre,
         this.edad = edad,
         this.DNI = DNI,
@@ -13,6 +13,8 @@ class Candidato{
         this.direccion = direccion,           
         this.telefono = telefono,
         this.especialidad = especialidad;
+        this.lenguaje = lenguaje;
+        this.seniority = seniority;
         this.ID = ID;
     }
     
@@ -52,6 +54,8 @@ function enviarFormulario(e){
         $direccion = formulario.children[11].value,           
         $telefono = formulario.children[13].value,
         $especialidad = formulario.children[15].value;
+        $seniority = formulario.children[17].value
+        $lenguaje = formulario.children[19].value;
         
         
         //optimizado
@@ -59,7 +63,7 @@ function enviarFormulario(e){
         
         let $ID = $numeroID;
 
-        let candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono, $especialidad, $ID );
+        let candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono, $especialidad,lenguaje,seniority, $ID );
         
         //optimizado
         let $carpeta = JSON.parse(localStorage.getItem('carpeta'))||[];
