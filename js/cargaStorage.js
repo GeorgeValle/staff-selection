@@ -53,17 +53,22 @@ function enviarFormulario(e){
         $ciudad = formulario.children[9].value,
         $direccion = formulario.children[11].value,           
         $telefono = formulario.children[13].value,
-        $especialidad = formulario.children[15].value;
-        $seniority = formulario.children[17].value
-        $lenguaje = formulario.children[19].value;
+        $especialidad = formulario.children[15].value,
+        $seniority = formulario.children[17].value,
+        $lenguaje = [];
+        // selecciona todos los checkboxes del documento
+        let checks= document.querySelectorAll(".lenguaje");
         
+        //navega por el array y si está seleccionado lo agrega al array lenguaje
+        checks.forEach((c)=>{
+        c.checked == true && $lenguaje.push(c.value)})
         
         //optimizado
         let $numeroID = JSON.parse(localStorage.getItem('numeroID'))||0;       
         
         let $ID = $numeroID;
 
-        let candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono, $especialidad,lenguaje,seniority, $ID );
+        let candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono, $especialidad, $lenguaje, $seniority, $ID );
         
         //optimizado
         let $carpeta = JSON.parse(localStorage.getItem('carpeta'))||[];

@@ -48,12 +48,12 @@ function removeSearch() {
 
 function imprimirBusqueda(candidato){
 
-    let {nombre,edad,DNI,direccion,telefono,especialidad}=candidato;
+    let {nombre,edad,DNI,direccion,provincia,ciudad,telefono,especialidad,seniority,lenguaje}=candidato;
     const $porNombre = document.getElementById("father1");
         
                         
     let divi = document.createElement("divi");
-    // divi.innerHTML = candidato.mostrarPropiedades();
+    
     divi.innerHTML =   `<article class="col card-text found remove-search glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
                             <h3>Candidato: ${nombre}</h3>
                             <p> Edad: ${edad} </p>
@@ -63,6 +63,9 @@ function imprimirBusqueda(candidato){
                             <p> Ciudad: ${ciudad}</p>
                             <p> Telefono: ${telefono} </p>
                             <p> Especialidad: ${especialidad} </p>
+                            <p> Seniority: ${seniority} </p>
+                            <p> Lenguajes: ${lenguaje.join(', ')} </p>
+                            
                         </article>`;
                     $porNombre.appendChild(divi);
                     showModalBusqueda("Candidato Impreso en Web"); // agregar icono al modal
@@ -70,11 +73,11 @@ function imprimirBusqueda(candidato){
 }
 
 //imprime los candiadtos por especialidad
-function imprimirMultiple($filtroEspecialidad){
-for(let i = 0; i < $filtroEspecialidad.length; i++) {
-    let {nombre,edad,DNI,direccion,provincia,ciudad,telefono,especialidad} 
-    = $filtroEspecialidad[i];
-    const $porEspecialidad = document.getElementById("father1");
+function imprimirMultiple($filtro){
+for(let i = 0; i < $filtro.length; i++) {
+    let {nombre,edad,DNI,direccion,provincia,ciudad,telefono,especialidad,seniority,lenguaje} 
+    = $filtro[i];
+    const $porFiltro = document.getElementById("father1");
     let divi = document.createElement("divi");
     divi.innerHTML = `<article class="col card-text remove-search found glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
                         <h3>Candidato: ${nombre}</h3>
@@ -85,8 +88,10 @@ for(let i = 0; i < $filtroEspecialidad.length; i++) {
                         <p> Ciudad: ${ciudad}</p>
                         <p> Telefono: ${telefono} </p>
                         <p> Especialidad: ${especialidad} </p>
+                        <p> Seniority: ${seniority} </p>
+                        <p> Lenguaje: ${lenguaje.join(', ')} </p>
                     </article>`;
-    $porEspecialidad.appendChild(divi);
+                    $porFiltro.appendChild(divi);
     showModalBusqueda("Busqueda Impresa en Web"); // agregar icono al modal
                 }
 }
@@ -212,7 +217,32 @@ function buscarXFull(){
     
     }
     catch{}                                  
-}    
+} 
+
+function buscarXSeniority(e){
+
+    e.preventDefault();
+    
+    let formulario = e.target,
+    $especialidad = formulario.children[1].value,
+    $seniority = formulario.children[3].value;
+    console.log($especialidad);
+    console.log($seniority);
+    document.getElementById('xSeniority').reset();
+
+    let $carpeta= JSON.parse(localStorage.getItem('carpeta'))
+    ||showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
+    try{
+    const $filtroEspecialidad = $carpeta.filter(cand => cand.especialidad.includes($especialidad));
+
+    const $FiltroSeniority= $filtroEspecialidad.filter(cand => cand.seniority.includes($seniority));
+
+    $FiltroSeniority.some(cand => cand.seniority.includes($seniority))==false
+    ?showModalBusqueda('"NO" hay candidatos con esos requerimientos') // agregar icono al modal
+    :imprimirMultiple($FiltroSeniority);
+}
+catch{}
+}
 
 
 /* ************************************************
@@ -243,4 +273,8 @@ $btnBackend.addEventListener('click', buscarXBack);
 // busca por especialidad a través del boton Fullstack
 const $btnFullstack = document.getElementById('full');
 $btnFullstack.addEventListener('click', buscarXFull);
+
+// busca por especialidad y seniority.
+const $btnEspAndSen = document.getElementById('xSeniority');
+$btnEspAndSen.addEventListener('submit', buscarXSeniority);
 
