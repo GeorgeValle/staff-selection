@@ -104,12 +104,12 @@ function registrarse(e){
         
         verification($key);
         let  $keyJSON = localStorage.getItem('verification')||console.log("no se cargó");
-        let  $masterKey = parseInt($keyJSON);
+        let  $recruit = parseInt($keyJSON);
         
         //localStorage.removeItem('verification');
 
-        console.log(`${$masterKey} esto cargó`);
-        const usuario= new Usuario($email,$userName,$pass,$since,$masterKey,$userID,$celular);
+        console.log(`${$recruit} esto cargó`);
+        const usuario= new Usuario($email,$userName,$pass,$since,$recruit,$userID,$celular);
 
         $perfiles.push(usuario);
 

@@ -6,40 +6,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/icons/ss.ico">
   <!-- script de bootstrap -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script> -->
-  <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>>
+  <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
 
   <link href="css/styles.css" rel="stylesheet" />
 
-  <script src="./js/control.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet">
+
+  <script src="/js/usuariosIndex.js" defer></script>
 
   <title>Staff Selection</title>
 </head>
 
-<body  >
+<body onload="controlIndex()" >
   <header>
     <!-- ************************* -->
     <!-- ***** Inicio Header ***** -->
     <!-- ************************* -->
-    <aside id="modalBar" class="modal modal_edit " tabindex="-1" >
-      <article class="modal-dialog">
-          <div class="modal-content glass-greenty-card">
-              <div  class="modal-header" >
-                  <button id="closeModalBar" type="button" class="btn-close  p-2 glass-snow" data-bs-dismiss="modal"></button>                
-                  
-              </div>
-              <div id="fatherP" class="modal-body fatherP" >
-                  
-                  
-              </div>
-          </div>
-      </article>
-  </aside>
+    
 
     <!-- Imagen de banner, contenedor fluid de bootstraps -->
+
     <div class="container-fluid">
       <picture>
         <source class="logoHeader__banner rounded border-1 img-fluid mx-auto d-block"
@@ -50,64 +42,29 @@
       </picture>
     </div>
 
-    <div class="b-example-divider"></div>
+    <!-- <div class="b-example-divider"></div> -->
 
     <!-- ***** inicio del menu de navegación *****-->
     <section class="container">
+      <article class="d-flex flex-wrap glass-greenty-card align-items-center justify-content-center justify-content-md-between py-3 mb-4 mt-4 rounded shadow">
+          <a href="/index.html" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+              <img class="bi me-2" src="/assets/images/logo-web.png"   role="img" aria-label="Bootstrap">
+                  <use xlink:href="#bootstrap" />
+          </img>
+          </a>
+        <div id="fatherP">
+            
 
-      <nav class="menu   navbar  navbar-expand-lg navbar-light glass-greenty-card ">
-        <div class="container-fluid ">
-
-          <div class=" offcanvas   offcanvas-end navbar-light " tabindex="-1" id="navbarOffcanvasLg"
-            aria-labelledby="navbarOffcanvasLgLabel">
-
-            <div class="offcanvas-header">
-              <button type="button" class="btn-close  " data-bs-dismiss="modal"
-                aria-label="Close">
-              </button>
-            </div>
-            <div class="offcanvas-body">
-              <ul class="menu-items navbar-nav fatherP justify-content-end flex-grow-1    justify-content-center pe-3 ">
-                <li class="nav-item p-2 text-center">
-                  <a href="index.html" class="active_label nav-link px-2 text-primary link-dark active"
-                    aria-current="page">Inicio</a>
-                </li>
-                <li class="nav-item p-2 text-center">
-                  <a href="pages/enrolamiento.html" class="nav-link px-2 text-primary link-dark">Sumate</a>
-                </li>
-                <li class="nav-item p-2 text-center">
-                  <a href="pages/busqueda.html" class="nav-link px-2 text-primary link-dark">B&#250;squeda</a>
-                </li>
-                <li class="nav-item p-2 text-center">
-                  <a href="pages/ayuda.html" class="nav-link px-2 text-primary link-dark">Ayuda</a>
-                </li>
-                <li class="nav-item">
-                  <button type="button" onclick="window.location.href='pages/registration.html';"
-                    class="btn btn-primary m-2">
-                    Registrarse
-                  </button>
-                </li>
-                <li class="nav-item">
-                  <button type="button" onclick="window.location.href='pages/login.html';"
-                    class="btn btn-outline-primary m-2">
-                    Ingresar
-                  </button>
-                </li>
-              </ul>
-
-            </div>
-
-
-
-          </div>
-          <button class="navbar-toggler" style="font-size: 2rem;" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+              <div class="col-md-3 remove-links text-end">
+                <button type="button" onclick="window.location.href='/pages/login.html';" class="btn btn-outline-primary mx-3 mt-1">
+                  Ingresar
+                </button>
+                <button type="button" onclick="window.location.href='/pages/registration.html';" class="btn btn-primary  mx-1 mt-1">Registrarse</button>
+              </div>
         </div>
-      </nav>
-
-    </section>
+          <div class="b-example-divider"></div>
+      </article>
+  </section>
   </header>
 
   <main class="text-center glass-greenty-card mt-4">

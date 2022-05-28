@@ -4,29 +4,7 @@
 //faltan los modales de login,
 // y crear la barra para reclutadores o usuarios normales
 
-class Usuario {
-    constructor($email,$userName,$pass,$since,$masterKey,$userID,$celular){
-    this.email= $email,
-    this.userName= $userName,
-    this.pass=$pass,
-    this.since=$since,
-    this.recluiter=$masterKey,
-    this.userID=$userID,
-    this.celular= $celular;
-    
-    }
 
-    // setPassword(password) {
-    //     this._password=password;
-    // }
-
-    // get password(){
-    //     return this._password;
-
-    // }
-
-
-}
 
 const $welcome = `<span class="material-icons text-success">
 waving_hand
@@ -36,6 +14,9 @@ const $warning= `<span class="material-icons text-danger">
                     warning_amber
                 </span>`;
 
+                function goIndex(){
+                    window.location = '../index.html';
+                }
 
 function showModalRegistro(texto){
     const $container = document.getElementById("father3");
@@ -52,18 +33,20 @@ function closeModalRegistro(){
 
 function bienvenido($user){
 
-    localStorage.setItem('user', $user);
+    //localStorage.setItem('user', $user);
     // let $cookieB = new Boolean(true);
     // localStorage.setItem('cookieB', $cookieB);
     showModalRegistro(`${$welcome}bienvenido`);
-    // let {recluiter} = $user;
-    // recluiter==1
-    // ?document.getElementById('navbar-recluiter').style.display = 'block'
-    // :document.getElementById('navbar-user').style.display = 'block';
-    function goIndex(){
-        window.location = '../index.html';
-    }
-    setTimeout(goIndex, 3000);
+    
+    
+    $user.recruit===1
+    ?sessionStorage.setItem('superUser', 2 )
+    :sessionStorage.setItem('superUser', 1 );
+
+
+    
+    
+    //goIndex();
 }
 
 
@@ -85,7 +68,7 @@ function logearse(e) {
     ||showModalRegistro(`${$warning}El E-mail no corresponde a un usuario`);
 
     $usuario.pass == $password  
-        ?showModalRegistro(`${$warning}Contraseña incorrecta`) //agregar icono
+        ?showModalRegistro(`${$warning}Contraseña incorrecta`) 
         :bienvenido($usuario);
 }
 

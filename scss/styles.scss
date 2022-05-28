@@ -27,10 +27,7 @@ body{
     margin-left: 0,5rem;
 
 
-        // .dropdown{
-        //     position:fixed;
-        //     z-index: index 2;
-        // }
+
         a.active_label, a:hover{
         @include hover-orange;
         }                    

@@ -36,7 +36,7 @@ function closeModal() {
     };
 }
 
-//elimina el listado de candiadatos impreso antes que cargue el nuevo.
+//elimina el listado de candidatos impresos antes que cargue el nuevo.
 function removeSearch() {
     
     let $removeNodo = document.getElementsByClassName("remove-search");
@@ -48,7 +48,7 @@ function removeSearch() {
 
 function imprimirBusqueda(candidato){
 
-    let {nombre,edad,DNI,direccion,provincia,ciudad,telefono,especialidad,seniority,lenguaje}=candidato;
+    let {nombre,edad,DNI,direccion,provincia,ciudad,telefono,email,especialidad,seniority,lenguaje}=candidato;
     const $porNombre = document.getElementById("father1");
         
                         
@@ -62,6 +62,7 @@ function imprimirBusqueda(candidato){
                             <p> Provincia: ${provincia}</p>
                             <p> Ciudad: ${ciudad}</p>
                             <p> Telefono: ${telefono} </p>
+                            <p> E-mail: ${email} </p>
                             <p> Especialidad: ${especialidad} </p>
                             <p> Seniority: ${seniority} </p>
                             <p> Lenguajes: ${lenguaje.join(', ')} </p>
@@ -75,7 +76,7 @@ function imprimirBusqueda(candidato){
 //imprime los candiadtos por especialidad
 function imprimirMultiple($filtro){
 for(let i = 0; i < $filtro.length; i++) {
-    let {nombre,edad,DNI,direccion,provincia,ciudad,telefono,especialidad,seniority,lenguaje} 
+    let {nombre,edad,DNI,direccion,provincia,ciudad,telefono,email,especialidad,seniority,lenguaje} 
     = $filtro[i];
     const $porFiltro = document.getElementById("father1");
     let divi = document.createElement("divi");
@@ -87,6 +88,7 @@ for(let i = 0; i < $filtro.length; i++) {
                         <p> Provincia: ${provincia}</p>
                         <p> Ciudad: ${ciudad}</p>
                         <p> Telefono: ${telefono} </p>
+                        <p> E-mail: ${email} </p>
                         <p> Especialidad: ${especialidad} </p>
                         <p> Seniority: ${seniority} </p>
                         <p> Lenguaje: ${lenguaje.join(', ')} </p>
@@ -133,9 +135,10 @@ function buscarXDNI(e){
     e.preventDefault();
     
     let formulario = e.target,
+    //obtiene el nombre del input
     $DNI = parseInt(formulario.children[1].value);
     document.getElementById('xDNI').reset();
-    //optimizado, busca los candidatos del localStorage
+    // busca los candidatos del localStorage
     let $carpeta = JSON.parse(localStorage.getItem('carpeta'))
     ||showModalBusqueda('No hay candidatos cargados');
     

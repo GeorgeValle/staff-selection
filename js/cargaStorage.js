@@ -4,7 +4,7 @@ Sección carga de candidatos */
 
 
 class Candidato{
-    constructor(nombre, edad, DNI, provincia, ciudad, direccion, telefono, especialidad,lenguaje, seniority, ID){
+    constructor(nombre, edad, DNI, provincia, ciudad, direccion, telefono, email, especialidad,lenguaje, seniority, ID){
         this.nombre = nombre,
         this.edad = edad,
         this.DNI = DNI,
@@ -12,6 +12,7 @@ class Candidato{
         this.ciudad = ciudad,
         this.direccion = direccion,           
         this.telefono = telefono,
+        this.email = email,
         this.especialidad = especialidad;
         this.lenguaje = lenguaje;
         this.seniority = seniority;
@@ -53,8 +54,9 @@ function enviarFormulario(e){
         $ciudad = formulario.children[9].value,
         $direccion = formulario.children[11].value,           
         $telefono = formulario.children[13].value,
-        $especialidad = formulario.children[15].value,
-        $seniority = formulario.children[17].value,
+        $email = formulario.children[15].value
+        $especialidad = formulario.children[17].value,
+        $seniority = formulario.children[19].value,
         $lenguaje = [];
         // selecciona todos los checkboxes del documento
         let checks= document.querySelectorAll(".lenguaje");
@@ -68,7 +70,7 @@ function enviarFormulario(e){
         
         let $ID = $numeroID;
 
-        let candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono, $especialidad, $lenguaje, $seniority, $ID );
+        let candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono,$email, $especialidad, $lenguaje, $seniority, $ID );
         
         //optimizado
         let $carpeta = JSON.parse(localStorage.getItem('carpeta'))||[];
