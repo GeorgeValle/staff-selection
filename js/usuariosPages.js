@@ -1,4 +1,4 @@
-
+/*Controla la navabar de usuarios en las demás pages */
 
 function controlPages(){
 
@@ -59,7 +59,7 @@ function controlPages(){
                 
                 </li>
                 <li>      
-                    <button id="logout"  type="button" onclick="menuLogout();" class="btn btn-primary pd-2 mt-1 mx-1">
+                    <button id="logout"  type="button" onclick="menuLogout();" class="btn btn-outline-primary pd-2 mt-1 mx-1">
                         Salir
                     </button>
                 </li>
@@ -88,7 +88,7 @@ function controlPages(){
                     </button>    
                 </li>
                 <li>      
-                    <button id="logout"  type="button" onclick="menuLogout();" class="btn btn-primary pd-2 mt-1 mx-1">
+                    <button id="logout"  type="button" onclick="menuLogout();" class="btn btn-outline-primary pd-2 mt-1 mx-1">
                         Salir
                     </button>
                 </li>

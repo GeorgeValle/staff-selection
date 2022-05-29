@@ -1,8 +1,9 @@
 
 
-//falta testear el login y hacer el html de registro
-//faltan los modales de login,
-// y crear la barra para reclutadores o usuarios normales
+/*----------------------------------------------------------------
+script con código de login para los usuarios de la pagina
+------------------------------------------------------------------*/
+
 
 
 
@@ -14,39 +15,63 @@ const $warning= `<span class="material-icons text-danger">
                     warning_amber
                 </span>`;
 
-                function goIndex(){
-                    window.location = '../index.html';
-                }
+                
 
-function showModalRegistro(texto){
+function showModalLogin(texto){
+    removeLinks();
     const $container = document.getElementById("father3");
     let div = document.createElement("div");
-    div.innerHTML = `<h5 class=" text-primary remove-text text-center p-3 d-inline-block glass-snow ">${texto}</h5>`;
+    div.innerHTML = `<h5 class=" text-primary remove-links text-center p-3 d-inline-block glass-snow ">${texto}</h5>`;
     $container.appendChild(div);
     document.getElementById('modal').style.display = 'block';
-    setTimeout(closeModalRegistro, 2500);
+    setTimeout(closeModalLogin, 2500);
 }
 
-function closeModalRegistro(){
+function showModalSuccess(texto){
+    //elimina el mensaje personalizado impreso anteriomente.
+    removeLinks();
+
+    const $container = document.getElementById("father3");
+    let div = document.createElement("div");
+    div.innerHTML = `
+    <h5 class=" text-primary remove-links text-center p-3 d-inline-block glass-snow ">${texto}</h5>
+    <div class="modal-footer text-center">
+    <button type="button" class="btn btn-primary" onclick="window.location.href='../index.html';"> Continue > </button>
+    </div>`;
+    $container.appendChild(div);
+    document.getElementById('modal').style.display = 'block';
+    
+}
+
+
+//For close my beautifull modal
+const $btnCloseModal = document.getElementById('closeModalCarga');
+
+$btnCloseModal.addEventListener('click', closeModalLogin);
+
+function closeModalLogin(){
     document.getElementById('modal').style.display = 'none';
+
+    
+
+}
+
+function removeLinks(){
+    let $removelinks = document.getElementsByClassName("remove-links");
+        for(i=0;i<$removelinks.length;i++){
+    $removelinks[i].remove();
+    };
 }
 
 function bienvenido($user){
 
-    //localStorage.setItem('user', $user);
-    // let $cookieB = new Boolean(true);
-    // localStorage.setItem('cookieB', $cookieB);
-    showModalRegistro(`${$welcome}bienvenido`);
-    
-    
     $user.recruit===1
     ?sessionStorage.setItem('superUser', 2 )
     :sessionStorage.setItem('superUser', 1 );
 
+    showModalSuccess(`${$welcome}bienvenido`);
+    
 
-    
-    
-    //goIndex();
 }
 
 
@@ -55,21 +80,30 @@ const $btnLogin = document.getElementById('login');
 $btnLogin.addEventListener('submit', logearse);
 
 function logearse(e) {
+    e.preventDefault();
     let formulario = e.target,
     $email = formulario.children[1].value.toLowerCase(),
-    $password = formulario.children[3].value;
+    $password = formulario.children[4].value;
 
     document.getElementById('login').reset();
 
+    try{
     let $perfiles = JSON.parse(localStorage.getItem('perfiles'))
-    ||showModalRegistro(`${$warning}No hay usuarios cargados`);
+    ||showModalLogin(`${$warning}No hay usuarios cargados`);
 
     let $usuario = $perfiles.find( user => user.email === $email)
-    ||showModalRegistro(`${$warning}El E-mail no corresponde a un usuario`);
+    ||showModalLogin(`${$warning}El E-mail no corresponde a un usuario`);
 
-    $usuario.pass == $password  
-        ?showModalRegistro(`${$warning}Contraseña incorrecta`) 
-        :bienvenido($usuario);
+    
+        
+
+    $usuario.pass == $password 
+        ?bienvenido($usuario) 
+        :showModalLogin(`${$warning}Contraseña incorrecta`);
+
+    }
+    catch{}
+        
 }
 
 

@@ -1,5 +1,5 @@
 
-
+/* Controla la navbar de los usuarios en el index */
 
 function controlIndex(){
 
@@ -60,7 +60,7 @@ function controlIndex(){
                 
                 </li>
                 <li>      
-                    <button id="logout"  type="button" onclick="menuLogout();" class="btn btn-primary pd-2 mt-1 mx-1">
+                    <button id="logout"  type="button" onclick="menuLogout();" class="btn btn-outline-primary pd-2 mt-1 mx-1">
                         Salir
                     </button>
                 </li>
@@ -89,7 +89,7 @@ function controlIndex(){
                     </button>    
                 </li>
                 <li>      
-                    <button id="logout"  type="button" onclick="menuLogout();" class="btn btn-primary pd-2 mt-1 mx-1">
+                    <button id="logout"  type="button" onclick="menuLogout();" class="btn btn-outline-primary pd-2 mt-1 mx-1">
                         Salir
                     </button>
                 </li>

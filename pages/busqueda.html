@@ -8,10 +8,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="../assets/icons/ss.ico">
     
-    <!-- script de bootstrap -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script> -->
+    
     <script src="../libs/bootstrap/dist/js/bootstrap.min.js" defer></script>
     <script src="../js/usuariosPages.js" defer></script>
 
@@ -55,16 +52,11 @@
                     <use xlink:href="#bootstrap" />
             </img>
             </a>
+            <!-- debajo de está etiqueta se agrega de manera dinamica
+            los enlaces según el tipo de usuario (visitante, registrado, reclutador) -->
             <div id="fatherP">             
 
-                <div class="col-md-3 remove-links text-end">
-                    <button type="button" onclick="window.location.href='login.html';" class="btn btn-outline-primary mx-3 mt-1">
-                        Ingresar
-                    </button>
-                    <button type="button" onclick="window.location.href='registration.html';" class="btn btn-primary  mx-1 mt-1">
-                        Registrarse
-                    </button>
-                </div>
+                
             </div>
             <div class="b-example-divider"></div>
         </article>
@@ -91,23 +83,7 @@
             </article>
         </aside>
 
-        <!-- <span class="material-icons">
-                            person_add
-                        </span> -->
-
-        <!-- <span class="material-icons">
-            people
-            </span> -->
-
-
-            <!-- <span class="material-icons">
-                person_search
-                </span> -->
-
-
-                <!-- <span class="material-icons">
-                    error
-                    </span> -->
+        
 
         <section class="container-fluid glass-celesty-card force my-5">
             <section class="row overflow_x ">
@@ -176,7 +152,7 @@
                         <div class="accordion-item glass-celesty-card">
                             <h2 class="accordion-header" id="flush-headingFour">
                                 <button class="accordion-button collapsed glass-greenty-card label" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                                #4 Busqueda por seniority y especialidad
+                                #4 Busqueda por Especialidad y Seniority 
                                 </button>
                             </h2>
                             <div id="flush-collapseFour" class="accordion-collapse collapse glass-greenty-card" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
@@ -223,7 +199,7 @@
         <div class="container-fluid pt-1 mt-1 mb-0">
             <div class="text-center">
                 <h4 class="d-inline-block glass-greenty-card mt-3 p-4">
-                    Todas tus vacantes completas
+                    Todas tus vacantes completas a una b&#250;squeda de distancia
                 </h4>
             </div>
 
@@ -234,8 +210,6 @@
         </div>
     </footer>
     
-    
-    <!-- script para la entrega de DOM -->
     <script src="../js/busquedaStorage.js"></script>
     
 </body>

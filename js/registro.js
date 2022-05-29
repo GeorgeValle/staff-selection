@@ -1,6 +1,5 @@
 
-//const { DateTime } =require("luxon");
-//import { DateTime } from "luxon";
+
 class Usuario {
     constructor($email,$userName,$pass,$since,$recruit,$userID,$celular){
     this.email=$email,
@@ -13,17 +12,6 @@ class Usuario {
     
     }
 
-    // setPassword(password) {
-    //     this._password=password;
-    // }
-
-    // get password(){
-    //     return this._password;
-
-    // }
-
-    
-
 }
 
 const $ICON_CHECK=`<span class="material-icons text-success">
@@ -35,31 +23,28 @@ const DateTime = luxon.DateTime;
 function showModalRegistro(texto){
     const $container = document.getElementById("father3");
     let div = document.createElement("div");
-    div.innerHTML = `<h5 class=" text-primary remove-text text-center p-3 d-inline-block glass-snow ">${texto}</h5>`;
+    div.innerHTML = `
+    <h5 class=" text-primary remove-text text-center p-3 d-inline-block glass-snow ">${texto}</h5>
+    <div class="modal-footer text-center">
+    <button type="button" class="btn btn-primary" onclick="window.location.href='../index.html';"> Continue > </button>
+    </div>`;
     $container.appendChild(div);
     document.getElementById('modal').style.display = 'block';
-    setTimeout(closeModalRegistro, 2500);
+    
 }
 
-// const miInit = {method: 'GET', headers:{'Content-Type':'aplication/json'}, 
-// mode:'cords',
-// cache: 'default'
-// };
-
-
-
+//función para verificar que se introdujo la clave para ser recruiter. 
 async function  verification($key){
-    //const MASTER_KEY = "IXZpZGFfbnVldmFf";
-// let myRequest = new Request(""./data_class.json",myInit);   
+    // MASTER_KEY es = "IXZpZGFfbnVldmFf" con eso sos recruiter;
+
 await fetch('../js/masterKey.json')
-    //.then(resp => resp.ok ?resp.json() :Promise.reject(resp))
+    
     .then(resp => resp.json())
     .then(data =>{
         const MASTER_KEY = data.recruitKey;
         console.log(data);
         let $keyValor;
-        //console.log(MASTER_KEY);
-        //console.log($key);
+        
         $key===MASTER_KEY
         ? localStorage.setItem('verification', JSON.stringify($keyValor=1))
         : localStorage.setItem('verification', JSON.stringify($keyValor=0));
@@ -73,6 +58,12 @@ await fetch('../js/masterKey.json')
     
 }
 
+//For close my beautifull modal
+const $btnCloseModal = document.getElementById('closeModalRegistro');
+
+$btnCloseModal.addEventListener('click', closeModalRegistro);
+
+// para cerrar con delay
 function closeModalRegistro(){
     document.getElementById('modal').style.display = 'none';
 }
@@ -106,13 +97,14 @@ function registrarse(e){
         let  $keyJSON = localStorage.getItem('verification')||console.log("no se cargó");
         let  $recruit = parseInt($keyJSON);
         
-        //localStorage.removeItem('verification');
+        
 
         console.log(`${$recruit} esto cargó`);
         const usuario= new Usuario($email,$userName,$pass,$since,$recruit,$userID,$celular);
 
         $perfiles.push(usuario);
 
+        localStorage.removeItem('verification');
         $numeroUser++;
         localStorage.setItem('numeroUser', $numeroUser);
         const $perfilesJSON = JSON.stringify($perfiles);

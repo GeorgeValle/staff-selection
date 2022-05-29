@@ -8,20 +8,14 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="../assets/icons/ss.ico">
     
-    <!-- script de bootstrap -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script> -->
+    
     <script src="../libs/bootstrap/dist/js/bootstrap.min.js" defer></script>
+    <!-- script que controla el navabar  -->
     <script src="../js/usuariosPages.js" defer></script>
 
     <!-- link de los iconos de google -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
-
-        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-        rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-        crossorigin="anonymous"> -->
     
         <!-- link del css -->
     <link href="../src/styles.css" rel="stylesheet" />
@@ -62,24 +56,24 @@
                     <use xlink:href="#bootstrap" />
             </img>
             </a>
+            <!-- debajo de está etiqueta se agrega de manera dinamica
+            los enlaces según el tipo de usuario (visitante, registrado, reclutador) -->
             <div id="fatherP">             
 
-                <div class="col-md-3 remove-links text-end">
-                    <button type="button" onclick="window.location.href='login.html';" class="btn btn-outline-primary mx-3 mt-1">
-                        Ingresar
-                    </button>
-                    <button type="button" onclick="window.location.href='registration.html';" class="btn btn-primary  mx-1 mt-1">
-                        Registrarse
-                    </button>
-                </div>
+                
+                
             </div>
             <div class="b-example-divider"></div>
         </article>
     </section>
     </header>
 
-    <main class="text-center">
+        <!-- ************************* -->
+        <!-- ***** Inicio Main ******* -->
+        <!-- ************************* -->
 
+    <main class="text-center">
+            <!-- modal de información -->
         <aside id="modal" class="modal modal_edit " tabindex="-1" >
             <article class="modal-dialog">
                 <div class="modal-content glass-greenty-card">
@@ -92,27 +86,26 @@
                         <h5 class=" text-primary text-center p-3 d-inline-block glass-snow "><span class="material-icons text-success md-48 green600">
                             person_add
                         </span> Carga exitosa</h5>
-                        <!-- <span class="material-icons md-24 green600">
-                            person_add
-                        </span> -->
+                    </div>
+                    <div>
+                        <button class="btn btn-success mb-2" onclick="window.location.href='../index.html';" type="button">Volver a Inicio</button>
                     </div>
                 </div>
             </article>
         </aside>
 
-        <h1 class=" text-primary mt-5 p-3 d-inline-block glass-snow">Carga de Candidatos</h1>
+        <h1 class=" text-primary mt-5 p-3 d-inline-block glass-snow">Carg&#225; tus Datos</h1>
         <section class="container-fluid glass-celesty-card section_edit">
             <section class="row overflow_x ">
                 <article class="col mb-4 d-flex justify-content-center">
+                    <!-- sección de form de carga de candidatos -->
                     <form id="carga" class=" form glass-greenty-card form_edit p-3 my-2">
                         <label class="label">Nombre y Apellido</label>
                         <input class="form-control form-control-sm my-2" type="text" placeholder="Nombre Apellido"
-                            required>
-                            
+                            required>                           
                         <label class="label" >Edad</label>
                         <input  class="form-control form-control-sm my-2" type="number" placeholder="21 - Ejemplo"
-                            aria-label=".form-control-sm example" required>
-                            
+                            aria-label=".form-control-sm example" required>                         
                         <label class="label" >Numero de DNI (sin puntos)</label>
                         <input class="form-control form-control-sm my-2" type="number" placeholder="11111111 - ejemplo"
                             aria-label=".form-control-sm example" minlength="6" maxlength="9" required>
@@ -146,7 +139,7 @@
                             <option value="Semi-Senior">Semi-Senior</option>
                             <option value="Senior">Senior</option>
                         </select>
-                        
+                            <!-- sección de checkbox de lenguajes -->
                             <label class="label" >Seleccione lenguajes que maneja</label> 
                         <div class="form-check">
                             <input class="form-check-label lenguaje " type="checkbox" value="JavaScript" id="checkJavaScript">
@@ -158,11 +151,9 @@
                             <input class="form-check-label lenguaje " type="checkbox" value="Python" id="checkPython">
                             <label class="form-check-label" for="checkPython"></label>Python</label>        
                             <input class="form-check-label lenguaje" type="checkbox" value="Java" id="checkJava">
-                            <label class="form-check-label " for="checkJava"></label>Java</label>
-                            
+                            <label class="form-check-label " for="checkJava"></label>Java</label> 
                             <input class="form-check-label lenguaje " type="checkbox" value="PHP" id="checkPHP">
                             <label class="form-check-label" for="checkPHP"></label>PHP</label>
-                                                
                             <input class="form-check-label lenguaje " type="checkbox" value="Go" id="checkGo">
                             <label class="form-check-label" for="checkGo"></label>Go</label>
                             <input class="form-check-label lenguaje " type="checkbox" value="Ruby" id="checkRuby">
@@ -178,22 +169,20 @@
                         </div>
                         
                         <input class="mt_5 btn btn-success" type="submit" value="Cargar Datos" />
-
-
-
-
                     </form>
                 </article>
             </section>
         </section>
 
     </main>
-
+    <!-- **************************** -->
+    <!-- ******** Footer ************ -->
+    <!-- **************************** -->
     <footer class="glass-celesty-card mt-5">
         <div class="container-fluid pt-1 mt-1 mb-0">
             <div class="text-center">
                 <h4 class="d-inline-block glass-greenty-card mt-3 p-4">
-                    Todas tus vacantes completas
+                    Empleos a una busqueda de distanc&#237;a
                 </h4>
             </div>
 
@@ -203,7 +192,7 @@
             </div>
         </div>
     </footer>
-
+    <!--  script para carga de datos de los candidatos -->
     <script src="../js/cargaStorage.js"></script>
 
 </body>

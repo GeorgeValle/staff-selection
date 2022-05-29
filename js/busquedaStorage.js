@@ -1,13 +1,11 @@
 // para buscar candidatos
 
-// let $busquedaNombre = document.getElementById("forName")
-// $busquedaNombre.addEventListener("keyup", validarEnter);
+//variables
+const $WARNING= `<span class="material-icons text-danger">
+                    warning_amber
+                </span>`;
 
-// function validarEnter(e){
-//     if(e.keyCode===13){ buscarXNombre(e)}
-// }
-
-
+const $ICON_CHECK=`<span class="material-icons text-success">check_circle_outline</span>`;
 
 /* ************************************************
  ***********  Sala de Funciones *******************
@@ -15,6 +13,8 @@
 
 // para mostar modales personalizados
 function showModalBusqueda(texto){
+
+    removeText();
 
     const $container = document.getElementById("father2");
     let div = document.createElement("div");
@@ -29,7 +29,13 @@ function closeModal() {
     //hace que cierre el modal
     document.getElementById('modal').style.display = 'none';
     
-    //elimina el mensaje personalizado impreso anteriomente.
+    
+}
+// remueve el texto personalizado de los modales
+function removeText(){
+    
+    
+    
     let $removeNodo = document.getElementsByClassName("remove-text");
     for(i=0;i<$removeNodo.length;i++){
         $removeNodo[i].remove();
@@ -38,6 +44,8 @@ function closeModal() {
 
 //elimina el listado de candidatos impresos antes que cargue el nuevo.
 function removeSearch() {
+
+
     
     let $removeNodo = document.getElementsByClassName("remove-search");
     for(i=0;i<$removeNodo.length;i++){
@@ -54,7 +62,7 @@ function imprimirBusqueda(candidato){
                         
     let divi = document.createElement("divi");
     
-    divi.innerHTML =   `<article class="col card-text found remove-search glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
+    divi.innerHTML =   `<article class="col card-text found remove-search mx-auto glass-greenty-card p-3 mb-3 mt-2" style="max-width:28rem">
                             <h3>Candidato: ${nombre}</h3>
                             <p> Edad: ${edad} </p>
                             <p> DNI: ${DNI} </p>
@@ -69,18 +77,21 @@ function imprimirBusqueda(candidato){
                             
                         </article>`;
                     $porNombre.appendChild(divi);
-                    showModalBusqueda("Candidato Impreso en Web"); // agregar icono al modal
+                    showModalBusqueda(`${$ICON_CHECK} Candidato Impreso en Web`); 
                     
 }
 
-//imprime los candiadtos por especialidad
+//imprime los candidatos por especialidad
 function imprimirMultiple($filtro){
+
+    removeSearch();
+
 for(let i = 0; i < $filtro.length; i++) {
     let {nombre,edad,DNI,direccion,provincia,ciudad,telefono,email,especialidad,seniority,lenguaje} 
     = $filtro[i];
     const $porFiltro = document.getElementById("father1");
     let divi = document.createElement("divi");
-    divi.innerHTML = `<article class="col card-text remove-search found glass-greenty-card p-3 mb-3 mt-2" style="width:28rem">
+    divi.innerHTML = `<article class="col card-text remove-search mx-auto found glass-greenty-card p-3 mb-3 mt-2" style="max-width:28rem">
                         <h3>Candidato: ${nombre}</h3>
                         <p> Edad: ${edad} </p>
                         <p> DNI: ${DNI} </p>
@@ -94,7 +105,7 @@ for(let i = 0; i < $filtro.length; i++) {
                         <p> Lenguaje: ${lenguaje.join(', ')} </p>
                     </article>`;
                     $porFiltro.appendChild(divi);
-    showModalBusqueda("Busqueda Impresa en Web"); // agregar icono al modal
+    showModalBusqueda(`${$ICON_CHECK} Busqueda Impresa en Web`); 
                 }
 }
 //función que busca por nombre
@@ -103,32 +114,37 @@ function buscarXNombre(e){
     
     let formulario = e.target,
     $nombre = formulario.children[1].value;
+    
     document.getElementById('xNombre').reset();
     
-    
-    
-     //optimisado, busca los candidatos del localStorage  
+     // busca los candidatos del localStorage  
     let $carpeta = JSON.parse(localStorage.getItem('carpeta'))
-    ||showModalBusqueda('No hay candidatos cargados');
+    ||showModalBusqueda(`${$WARNING} No hay candidatos cargados`);
     try {    
         //trae al objeto candidato de array
-        let candidato = $carpeta.find( cand => cand.nombre === $nombre.toLowerCase());
+    
+        
+        let $candidatos = $carpeta.filter(cand => cand.nombre.includes($nombre.toLowerCase()))
+        ||showModalBusqueda(`${$WARNING} No se encontró un candidato`);
 
+        
         //elimina el listado de la busqueda anterior
         removeSearch();
+        
+        
 
-
-        $carpeta.some( cand => cand.nombre != $nombre.toLowerCase())==true 
-        ?showModalBusqueda('No se encontró un candidato') //agregar icono
-        :imprimirBusqueda(candidato);
+        $candidatos.some(cand => cand.nombre.includes($nombre.toLowerCase()))==false
+    ?showModalBusqueda(`${$WARNING} "NO" hay candidatos con ese nombre`) 
+    :imprimirMultiple($candidatos);
+        
+        
     }
     catch{
 
     };
 
-}                      
-
-
+}   
+            
 // función que busca por DNI
 function buscarXDNI(e){
 
@@ -137,10 +153,11 @@ function buscarXDNI(e){
     let formulario = e.target,
     //obtiene el nombre del input
     $DNI = parseInt(formulario.children[1].value);
+    
     document.getElementById('xDNI').reset();
     // busca los candidatos del localStorage
     let $carpeta = JSON.parse(localStorage.getItem('carpeta'))
-    ||showModalBusqueda('No hay candidatos cargados');
+    ||showModalBusqueda(`${$WARNING} No hay candidatos cargados`);
     
 
         try{
@@ -149,10 +166,9 @@ function buscarXDNI(e){
             removeSearch();
             
             let candidato2 = $carpeta.find( cand => parseInt(cand.DNI) === $DNI)
-
-            $carpeta.some( cand => parseInt(cand.DNI) != $DNI)==false
+            $carpeta.some( cand => parseInt(cand.DNI) == $DNI)==true
             ?imprimirBusqueda(candidato2) //imprimiremos la nueva busqueda
-            :showModalBusqueda('No se encontró un candidato');
+            :showModalBusqueda(`${$WARNING} No se encontró un candidato`);
         }
         catch{};
                     
@@ -162,8 +178,8 @@ function buscarXDNI(e){
 function buscarXFront(){
     //optimisado
     let $carpeta=JSON.parse(localStorage.getItem('carpeta'))
-    ||showModalBusqueda('No hay candidatos cargados');
-
+    ||showModalBusqueda(`${$WARNING} No hay candidatos cargados`);
+        
     try{
         
     /* se fitran los candidatos con la especialidad escrita creando un nuevo array */       
@@ -173,7 +189,7 @@ function buscarXFront(){
 
     //controla que haya candidatos con esa especialidad
     $carpeta.some(cand => cand.especialidad.includes('Frontend'))==false
-    ?showModalBusqueda('"NO" hay candidatos con esa especialidad') // agregar icono  
+    ?showModalBusqueda(`${$WARNING} "NO" hay candidatos con esa especialidad`)
     :imprimirMultiple($filtroEspecialidad);
     }
     catch{};
@@ -181,9 +197,10 @@ function buscarXFront(){
         
 }
 
+//busca por especialidad back
 function buscarXBack(){
     let $carpeta= JSON.parse(localStorage.getItem('carpeta'))
-    ||showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
+    ||showModalBusqueda(`${$WARNING} No hay candidatos cargados`);
     
     try{
         
@@ -191,20 +208,21 @@ function buscarXBack(){
         //elimina el listado de la busqueda anterior
         /* se fitran los candidatos con la especialidad escrita creando un nuevo array */
         const $filtroEspecialidad = $carpeta.filter(cand => cand.especialidad.includes('Backend'));
-        removeSearch()
+        removeSearch();
 
         //controla que haya candidatos con esa especialidad
         $carpeta.some(cand => cand.especialidad.includes('Backend'))==false
-        ?showModalBusqueda('"NO" hay candidatos con esa especialidad') // agregar icono 
+        ?showModalBusqueda(`${$WARNING} "NO" hay candidatos con esa especialidad`) 
         :imprimirMultiple($filtroEspecialidad); /*imprime todos los candidatos con esa especialidad*/
         
     }
     catch{};                                           
 }
 
+//usca por especialidad fullstack
 function buscarXFull(){
     let $carpeta= JSON.parse(localStorage.getItem('carpeta'))
-    ||showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
+    ||showModalBusqueda(`${$WARNING} No hay candidatos cargados`);
     try{
     
         /* se fitran los candidatos con la especialidad escrita creando un nuevo array */   
@@ -215,7 +233,7 @@ function buscarXFull(){
 
         //controla que haya candidatos con esa especialidad
         $carpeta.some(cand => cand.especialidad.includes('Fullstack'))==false
-        ?showModalBusqueda('"NO" hay candidatos con esa especialidad') // agregar icono al modal
+        ?showModalBusqueda(`${$WARNING} "NO" hay candidatos con esa especialidad`) 
         :imprimirMultiple($filtroEspecialidad);
     
     }
@@ -229,19 +247,21 @@ function buscarXSeniority(e){
     let formulario = e.target,
     $especialidad = formulario.children[1].value,
     $seniority = formulario.children[3].value;
-    console.log($especialidad);
-    console.log($seniority);
+    
+    
     document.getElementById('xSeniority').reset();
 
     let $carpeta= JSON.parse(localStorage.getItem('carpeta'))
-    ||showModalBusqueda('No hay candidatos cargados');// agregar icono al modal
+    ||showModalBusqueda(`${$WARNING} No hay candidatos cargados`);
     try{
     const $filtroEspecialidad = $carpeta.filter(cand => cand.especialidad.includes($especialidad));
 
     const $FiltroSeniority= $filtroEspecialidad.filter(cand => cand.seniority.includes($seniority));
 
+    removeSearch();
+
     $FiltroSeniority.some(cand => cand.seniority.includes($seniority))==false
-    ?showModalBusqueda('"NO" hay candidatos con esos requerimientos') // agregar icono al modal
+    ?showModalBusqueda(`${$WARNING} "NO" hay candidatos con esos requerimientos`) 
     :imprimirMultiple($FiltroSeniority);
 }
 catch{}
@@ -261,7 +281,7 @@ $btnCloseModal.addEventListener('click', closeModal);
 let $busquedaNombre = document.getElementById("xNombre")
 $busquedaNombre.addEventListener("submit", buscarXNombre);
 
-// te busca por DNI al candidato
+// find for DNI to candidate / busca por DNI
 let $busquedaDNI = document.getElementById("xDNI");
 $busquedaDNI.addEventListener("submit", buscarXDNI);
 
