@@ -62,8 +62,8 @@ function enviarFormulario(e){
         let checks= document.querySelectorAll(".lenguaje");
         
         //navega por el array y si está seleccionado lo agrega al array lenguaje
-        checks.forEach((c)=>{
-        c.checked == true && $lenguaje.push(c.value)})
+        checks.forEach((checkbox)=>{
+            checkbox.checked == true && $lenguaje.push(checkbox.value)})
         
         
         let $numeroID = JSON.parse(localStorage.getItem('numeroID'))||0;       

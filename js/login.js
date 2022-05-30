@@ -65,6 +65,7 @@ function removeLinks(){
 
 function bienvenido($user){
 
+    //controla que si recluiter vale 1 en el user lo hace reclutador, sino usuario
     $user.recruit===1
     ?sessionStorage.setItem('superUser', 2 )
     :sessionStorage.setItem('superUser', 1 );

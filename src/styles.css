@@ -11995,13 +11995,6 @@ de redes sociales*/
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-/* color para utilizar con los hovers*/
-.orange-button {
-  background-color: #FFCDAB;
-  border: .7px solid #fff;
-  border-radius: 10px;
-}
-
 body {
   background-image: -webkit-gradient(linear, left bottom, left top, from(#12FFF7), to(#B3FFAB));
   background-image: linear-gradient(to top, #12FFF7 0%, #B3FFAB 100%);
@@ -12056,20 +12049,5 @@ body {
   border-top: 1px solid #fff;
   padding: 0.5rem;
   margin-left: 0,5rem;
-}
-
-.menu a.active_label, .menu a:hover {
-  background-color: #FFCDAB;
-  border: .7px solid #fff;
-  -webkit-transition: .5;
-  transition: .5;
-}
-
-@media (max-width: 768px) {
-  /*medida de tablet */
-  /* agrea una capa de fondo trasparente a los 
-    links del menu desplegable para tener un poco
-    mas de contraste en dispositivos mobiles
-    and tablests */
 }
 /*# sourceMappingURL=styles.css.map */

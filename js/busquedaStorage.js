@@ -33,9 +33,7 @@ function closeModal() {
 }
 // remueve el texto personalizado de los modales
 function removeText(){
-    
-    
-    
+
     let $removeNodo = document.getElementsByClassName("remove-text");
     for(i=0;i<$removeNodo.length;i++){
         $removeNodo[i].remove();
@@ -45,15 +43,13 @@ function removeText(){
 //elimina el listado de candidatos impresos antes que cargue el nuevo.
 function removeSearch() {
 
-
-    
     let $removeNodo = document.getElementsByClassName("remove-search");
     for(i=0;i<$removeNodo.length;i++){
         $removeNodo[i].remove();
     };
 }
 
-
+// imprime una busqueda individual
 function imprimirBusqueda(candidato){
 
     let {nombre,edad,DNI,direccion,provincia,ciudad,telefono,email,especialidad,seniority,lenguaje}=candidato;
@@ -81,7 +77,7 @@ function imprimirBusqueda(candidato){
                     
 }
 
-//imprime los candidatos por especialidad
+//imprime los candidatos en manera grupal
 function imprimirMultiple($filtro){
 
     removeSearch();
@@ -108,7 +104,7 @@ for(let i = 0; i < $filtro.length; i++) {
     showModalBusqueda(`${$ICON_CHECK} Busqueda Impresa en Web`); 
                 }
 }
-//función que busca por nombre
+//función que busca candidatos que incluyan el nombre
 function buscarXNombre(e){
     e.preventDefault();
     
@@ -151,7 +147,7 @@ function buscarXDNI(e){
     e.preventDefault();
     
     let formulario = e.target,
-    //obtiene el nombre del input
+    //obtiene el DNI del input
     $DNI = parseInt(formulario.children[1].value);
     
     document.getElementById('xDNI').reset();
@@ -176,7 +172,7 @@ function buscarXDNI(e){
 
 // funcion que busca por especialidad frontend
 function buscarXFront(){
-    //optimisado
+    
     let $carpeta=JSON.parse(localStorage.getItem('carpeta'))
     ||showModalBusqueda(`${$WARNING} No hay candidatos cargados`);
         

@@ -4,7 +4,7 @@
 
 body{
     
-    // color: white; 
+    
     background-image: linear-gradient(to top, $celeste 0%, $verde 100%);
     min-height: 100vh; /*para que no desconfigure el gradient*/
 }
@@ -28,34 +28,7 @@ body{
 
 
 
-        a.active_label, a:hover{
-        @include hover-orange;
-        }                    
+                        
 }
 
 
-@media(max-width: 768px){ /*medida de tablet */
-    
-
-    
-
-    /* agrea una capa de fondo trasparente a los 
-    links del menu desplegable para tener un poco
-    mas de contraste en dispositivos mobiles
-    and tablests */
-    // main{
-    //     z-index:-2;
-    // }
-    // .dropdown{
-    //     @include glass-greenty-card;
-    //     z-index:1;
-    // }
-    // .nav-item{
-    //     @include glass-snow;
-    // }
-
-    
-
-
-
-} 
