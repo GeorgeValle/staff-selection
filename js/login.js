@@ -1,32 +1,11 @@
 
 
-//falta testear el login y hacer el html de registro
-//faltan los modales de login,
-// y crear la barra para reclutadores o usuarios normales
-
-class Usuario {
-    constructor($email,$userName,$pass,$since,$masterKey,$userID,$celular){
-    this.email= $email,
-    this.userName= $userName,
-    this.pass=$pass,
-    this.since=$since,
-    this.recluiter=$masterKey,
-    this.userID=$userID,
-    this.celular= $celular;
-    
-    }
-
-    // setPassword(password) {
-    //     this._password=password;
-    // }
-
-    // get password(){
-    //     return this._password;
-
-    // }
+/*----------------------------------------------------------------
+script con código de login para los usuarios de la pagina
+------------------------------------------------------------------*/
 
 
-}
+
 
 const $welcome = `<span class="material-icons text-success">
 waving_hand
@@ -36,34 +15,64 @@ const $warning= `<span class="material-icons text-danger">
                     warning_amber
                 </span>`;
 
+                
 
-function showModalRegistro(texto){
+function showModalLogin(texto){
+    removeLinks();
     const $container = document.getElementById("father3");
     let div = document.createElement("div");
-    div.innerHTML = `<h5 class=" text-primary remove-text text-center p-3 d-inline-block glass-snow ">${texto}</h5>`;
+    div.innerHTML = `<h5 class=" text-primary remove-links text-center p-3 d-inline-block glass-snow ">${texto}</h5>`;
     $container.appendChild(div);
     document.getElementById('modal').style.display = 'block';
-    setTimeout(closeModalRegistro, 2500);
+    setTimeout(closeModalLogin, 2500);
 }
 
-function closeModalRegistro(){
+function showModalSuccess(texto){
+    //elimina el mensaje personalizado impreso anteriomente.
+    removeLinks();
+
+    const $container = document.getElementById("father3");
+    let div = document.createElement("div");
+    div.innerHTML = `
+    <h5 class=" text-primary remove-links text-center p-3 d-inline-block glass-snow ">${texto}</h5>
+    <div class="modal-footer text-center">
+    <button type="button" class="btn btn-primary" onclick="window.location.href='../index.html';"> Continue > </button>
+    </div>`;
+    $container.appendChild(div);
+    document.getElementById('modal').style.display = 'block';
+    
+}
+
+
+//For close my beautifull modal
+const $btnCloseModal = document.getElementById('closeModalCarga');
+
+$btnCloseModal.addEventListener('click', closeModalLogin);
+
+function closeModalLogin(){
     document.getElementById('modal').style.display = 'none';
+
+    
+
+}
+
+function removeLinks(){
+    let $removelinks = document.getElementsByClassName("remove-links");
+        for(i=0;i<$removelinks.length;i++){
+    $removelinks[i].remove();
+    };
 }
 
 function bienvenido($user){
 
-    localStorage.setItem('user', $user);
-    let $cookieB = new Boolean(true);
-    localStorage.setItem('cookieB', $cookieB);
-    showModalRegistro(`${$welcome}bienvenido`);
-    // let {recluiter} = $user;
-    // recluiter==1
-    // ?document.getElementById('navbar-recluiter').style.display = 'block'
-    // :document.getElementById('navbar-user').style.display = 'block';
-    function goIndex(){
-        window.location = '../index.html';
-    }
-    setTimeout(goIndex, 3000);
+    //controla que si recluiter vale 1 en el user lo hace reclutador, sino usuario
+    $user.recruit===1
+    ?sessionStorage.setItem('superUser', 2 )
+    :sessionStorage.setItem('superUser', 1 );
+
+    showModalSuccess(`${$welcome}bienvenido`);
+    
+
 }
 
 
@@ -72,21 +81,30 @@ const $btnLogin = document.getElementById('login');
 $btnLogin.addEventListener('submit', logearse);
 
 function logearse(e) {
+    e.preventDefault();
     let formulario = e.target,
     $email = formulario.children[1].value.toLowerCase(),
-    $password = formulario.children[3].value;
+    $password = formulario.children[4].value;
 
     document.getElementById('login').reset();
 
+    try{
     let $perfiles = JSON.parse(localStorage.getItem('perfiles'))
-    ||showModalRegistro(`${$warning}No hay usuarios cargados`);
+    ||showModalLogin(`${$warning}No hay usuarios cargados`);
 
     let $usuario = $perfiles.find( user => user.email === $email)
-    ||showModalRegistro(`${$warning}El E-mail no corresponde a un usuario`);
+    ||showModalLogin(`${$warning}El E-mail no corresponde a un usuario`);
 
-    $usuario.pass == $password  
-        ?showModalBusqueda(`${$warning}Contraseña incorrecta`) //agregar icono
-        :bienvenido($usuario);
+    
+        
+
+    $usuario.pass == $password 
+        ?bienvenido($usuario) 
+        :showModalLogin(`${$warning}Contraseña incorrecta`);
+
+    }
+    catch{}
+        
 }
 
 

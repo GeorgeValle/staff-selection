@@ -5,12 +5,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/icons/ss.ico">
     
-    <!-- script de bootstrap -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script> -->
+    
     <script src="../libs/bootstrap/dist/js/bootstrap.min.js" defer></script>
+    <script src="../js/usuariosPages.js" defer></script>
+
+
 
 
 
@@ -20,10 +22,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
 
-    <title>Busqueda para las vacantes</title>
+    <title>Busqueda para tus vacantes</title>
 </head>
 
-<body>
+<body onload="controlPages()" >
     <header>
         <!-- ************************* -->
         <!-- ***** Inicio Header ***** -->
@@ -43,40 +45,22 @@
         <div class="b-example-divider"></div>
 
         <!-- ***** inicio del menu de navegación *****-->
-        <section class="container">
-            <article
-                class="d-flex flex-wrap glass-greenty-card align-items-center justify-content-center justify-content-md-between py-3 mb-4 mt-4 rounded shadow">
-                <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                    <svg class="bi me-2" color="purple" width="40" height="32" role="img" aria-label="Bootstrap">
-                        <use xlink:href="#bootstrap" />
-                    </svg>
-                </a>
+    <section class="container">
+        <article class="d-flex flex-wrap glass-greenty-card align-items-center justify-content-center justify-content-md-between py-3 mb-4 mt-4 rounded shadow">
+            <a href="../index.html" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                <img class="bi me-2" src="../assets/images/logo-web.png"   role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap" />
+            </img>
+            </a>
+            <!-- debajo de está etiqueta se agrega de manera dinamica
+            los enlaces según el tipo de usuario (visitante, registrado, reclutador) -->
+            <div id="fatherP">             
 
-                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li>
-                        <a href="../index.html" class="nav-link px-2 text-primary link-secondary active">Inicio</a>
-                    </li>
-                    <li>
-                        <a href="enrolamiento.html" class="nav-link px-2 text-primary link-dark">Enrolamiento</a>
-                    </li>
-                    <li>
-                        <a href="busqueda.html" class="nav-link px-2 text-primary link-dark">Busquedas</a>
-                    </li>
-                    <li>
-                        <a href="ayuda.html" class="nav-link px-2 text-primary link-dark">Ayuda</a>
-                    </li>
-                </ul>
-
-                <div class="col-md-3 text-end">
-                    <button type="button" onclick="window.location.href='login.html';" class="btn btn-outline-primary me-2">
-                        Ingresar
-                    </button>
-                    <button type="button" onclick="window.location.href='registration.html';" class="btn btn-primary">Registrarse</button>
-                </div>
-
-                <div class="b-example-divider"></div>
-            </article>
-        </section>
+                
+            </div>
+            <div class="b-example-divider"></div>
+        </article>
+    </section>
     </header>
     <!-- ************************* -->
     <!-- *** Inicio -> Main <-  ** -->
@@ -99,23 +83,7 @@
             </article>
         </aside>
 
-        <!-- <span class="material-icons">
-                            person_add
-                        </span> -->
-
-        <!-- <span class="material-icons">
-            people
-            </span> -->
-
-
-            <!-- <span class="material-icons">
-                person_search
-                </span> -->
-
-
-                <!-- <span class="material-icons">
-                    error
-                    </span> -->
+        
 
         <section class="container-fluid glass-celesty-card force my-5">
             <section class="row overflow_x ">
@@ -181,7 +149,38 @@
                                 </div>        
                             </div>            
                         </div>
-                                    
+                        <div class="accordion-item glass-celesty-card">
+                            <h2 class="accordion-header" id="flush-headingFour">
+                                <button class="accordion-button collapsed glass-greenty-card label" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                #4 Busqueda por Especialidad y Seniority 
+                                </button>
+                            </h2>
+                            <div id="flush-collapseFour" class="accordion-collapse collapse glass-greenty-card" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <form id="xSeniority" class="form glass-greenty-card form_edit_modifed p-3 my-2">
+                                        
+                                        <label class="label" >Seleccione Especialidad</label>
+                                        <select id="selectEsp" required class="form-select mt-2 mb-5" aria-label="Default select example" >
+                                            <option selected>Elija una Opción</option>
+                                            <option value="Frontend">Frontend</option>
+                                            <option value="Backend">Backend</option>
+                                            <option value="Fullstack">Fullstack</option>
+                                        </select>
+                                        <label class="label" >Seleccione Seniority</label>
+                                        <select id="selectSen" required class="form-select mt-2 mb-5" aria-label="Default select example" >
+                                            <option selected>Elija una Opción</option>
+                                            <option value="Junior">Junior</option>
+                                            <option value="Semi-Senior">Semi-Senior</option>
+                                            <option value="Senior">Senior</option>
+                                        </select>
+                                                <button id="forSeniority" type="submit" class="btn btn-success btn-front">Buscar</button>
+                                                <span class="error4" aria-live="polite"></span>
+                            
+                                        
+                                    </form>
+                                </div>    
+                            </div>        
+                        </div>             
                     </div>
                 </article>
             </section>
@@ -200,7 +199,7 @@
         <div class="container-fluid pt-1 mt-1 mb-0">
             <div class="text-center">
                 <h4 class="d-inline-block glass-greenty-card mt-3 p-4">
-                    Todas tus vacantes completas
+                    Todas tus vacantes completas a una b&#250;squeda de distancia
                 </h4>
             </div>
 
@@ -211,8 +210,6 @@
         </div>
     </footer>
     
-    
-    <!-- script para la entrega de DOM -->
     <script src="../js/busquedaStorage.js"></script>
     
 </body>

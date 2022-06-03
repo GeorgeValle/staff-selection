@@ -4,7 +4,7 @@ Sección carga de candidatos */
 
 
 class Candidato{
-    constructor(nombre, edad, DNI, provincia, ciudad, direccion, telefono, especialidad, ID){
+    constructor(nombre, edad, DNI, provincia, ciudad, direccion, telefono, email, especialidad,lenguaje, seniority, ID){
         this.nombre = nombre,
         this.edad = edad,
         this.DNI = DNI,
@@ -12,7 +12,10 @@ class Candidato{
         this.ciudad = ciudad,
         this.direccion = direccion,           
         this.telefono = telefono,
+        this.email = email,
         this.especialidad = especialidad;
+        this.lenguaje = lenguaje;
+        this.seniority = seniority;
         this.ID = ID;
     }
     
@@ -51,17 +54,25 @@ function enviarFormulario(e){
         $ciudad = formulario.children[9].value,
         $direccion = formulario.children[11].value,           
         $telefono = formulario.children[13].value,
-        $especialidad = formulario.children[15].value;
+        $email = formulario.children[15].value
+        $especialidad = formulario.children[17].value,
+        $seniority = formulario.children[19].value,
+        $lenguaje = [];
+        // selecciona todos los checkboxes del documento
+        let checks= document.querySelectorAll(".lenguaje");
+        
+        //navega por el array y si está seleccionado lo agrega al array lenguaje
+        checks.forEach((checkbox)=>{
+            checkbox.checked == true && $lenguaje.push(checkbox.value)})
         
         
-        //optimizado
         let $numeroID = JSON.parse(localStorage.getItem('numeroID'))||0;       
         
         let $ID = $numeroID;
 
-        let candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono, $especialidad, $ID );
+        let candidato1 = new Candidato($nombre, $edad, $DNI, $provincia, $ciudad, $direccion, $telefono,$email, $especialidad, $lenguaje, $seniority, $ID );
         
-        //optimizado
+        
         let $carpeta = JSON.parse(localStorage.getItem('carpeta'))||[];
         
 
@@ -74,8 +85,11 @@ function enviarFormulario(e){
         localStorage.setItem('carpeta', $carpetaJSON);
         document.getElementById('carga').reset();
         showModal();
-        //le agregué setTimeout para que fuese un alert mas que modal
-        setTimeout(closeModal, 2500);
+        
+        /*le agregué setTimeout para que fuese un alert mas que modal
+        dura 5 segundos porque si es un reclutador que está cargando 
+        candidatos puede cerrar la ventana o esperar que desaparezca*/
+        setTimeout(closeModal, 5000);
 
         
         
